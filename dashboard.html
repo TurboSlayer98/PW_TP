@@ -55,8 +55,12 @@
                                 <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                                 Painting
                             </a>
+                            <a class="nav-link" href="cars.html">
+                                <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                                Cars
+                            </a>
                             <div class="sb-sidenav-menu-heading">HR</div>
-                            <a class="nav-link" href="dashboard.html">
+                            <a class="nav-link" href="employes.html">
                                 <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                                 Employes
                             </a>
@@ -128,56 +132,78 @@
                         <ol class="breadcrumb mb-4">
                             <li class="breadcrumb-item active">Dashboard</li>
                         </ol>
-
                         <div class="row">
-                            <div class="col-xl-6 col-md-6">
-                                <div class="container-fluid">
-                                    <div class="row">
-                                      <div class='col-6'>
-                                        <p>Test</p>
-                                      </div>
-                                      <div class='col-6'>
-                                        <div id='wrap'>
-                                          <div id='calendar'></div>
-                                          <div style='clear:both'></div>
-                                        </div>
-                                      </div>
+                            <div class="col-xl-6 col-md-12">
+                                <div class="card bg-info text-white mb-4">
+                                    <div class="card-header">Carros em Oficina</div>
+                                    <div class="card-body text-lg-center">15</div>
+                                    <div class="card-footer d-flex align-items-center justify-content-between">
+                                        <a class="small text-white stretched-link" href="#">View Details</a>
+                                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                                     </div>
-                                  </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-6 col-md-12">
+                                <div class="card bg-success text-white mb-4">
+                                    <div class="card-header">?</div>
+                                    <div class="card-body"></div>
+                                    <div class="card-footer d-flex align-items-center justify-content-between">
+                                        <a class="small text-white stretched-link" href="#">View Details</a>
+                                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-
                         <div class="row">
-                            <div class="col-xl-3 col-md-6">
-                                <div class="card bg-primary text-white mb-4">
-                                    <div class="card-body">Primary Card</div>
-                                    <div class="card-footer d-flex align-items-center justify-content-between">
-                                        <a class="small text-white stretched-link" href="#">View Details</a>
-                                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                            <div class="col-xl-6 col-md-12">
+                                <div class="card mb-4">
+                                    <div class="card-header">Calendar</div>
+                                    <div class="card-body">
+                                        <div id='calendar'></div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-xl-3 col-md-6">
-                                <div class="card bg-warning text-white mb-4">
-                                    <div class="card-body">Warning Card</div>
-                                    <div class="card-footer d-flex align-items-center justify-content-between">
-                                        <a class="small text-white stretched-link" href="#">View Details</a>
-                                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                            <div class="col-xl-6 col-md-12">
+                                <div class="card mb-4">
+                                    <div class="card-header">Recent Activity</div>
+                                    <div class="card-body">
+                                        <table class="table" id="activity_table">
+                                            <thead>
+                                                <tr>
+                                                    <th>Name</th>
+                                                    <th>Role</th>
+                                                    <th>Last Active (minutes)</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <th>Hugo</th>
+                                                    <th>Administrator</th>
+                                                    <th>-</th>
+                                                </tr>
+                                                <tr>
+                                                    <th>Miguel</th>
+                                                    <th>Administrator</th>
+                                                    <th>-</th>
+                                                </tr>
+                                                <tr>
+                                                    <th>Peter</th>
+                                                    <th>Mechanic</th>
+                                                    <th>60</th>
+                                                </tr>
+                                                <tr>
+                                                    <th>Diego</th>
+                                                    <th>Mechanic</th>
+                                                    <th>20</th>
+                                                </tr>
+                                                <tr>
+                                                    <th>John</th>
+                                                    <th>Mechanic</th>
+                                                    <th>5</th>
+                                                </tr>
+                                            </tbody>
+                                        </table>
                                     </div>
-                                </div>
-                            </div>
-                            <div class="col-xl-3 col-md-6">
-                                <div class="card bg-success text-white mb-4">
-                                    <div class="card-body">Success Card</div>
-                                    <div class="card-footer d-flex align-items-center justify-content-between">
-                                        <a class="small text-white stretched-link" href="#">View Details</a>
-                                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-xl-3 col-md-6">
-                                <div class="card bg-danger text-white mb-4">
-                                    <div class="card-body">Danger Card</div>
                                     <div class="card-footer d-flex align-items-center justify-content-between">
                                         <a class="small text-white stretched-link" href="#">View Details</a>
                                         <div class="small text-white"><i class="fas fa-angle-right"></i></div>
@@ -415,5 +441,7 @@
         <script src="assets/demo/chart-bar-demo.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js" crossorigin="anonymous"></script>
         <script src="js/datatables-simple-demo.js"></script>
+        <script src="js/custom.js"></script>
+        <script src="js/calendar.js"></script>
     </body>
 </html>
