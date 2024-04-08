@@ -129,25 +129,58 @@
                             <li class="breadcrumb-item active">Employes</li>
                         </ol>
                         <div class="row">
-                            <div class="col-xl-6 col-md-12">
-                                <div class="card bg-black text-white mb-4">
-                                    <div class="card-header">Working</div>
-                                    <div class="card-body"></div>
-                                    <div class="card-footer d-flex align-items-center justify-content-between">
-                                        <a class="small text-white stretched-link" href="#">View Details</a>
-                                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
-                                    </div>
-                                </div>
+                            <div class="col-xl-12 col-md-12" id="col_1">
+                                <table class="table" id="user_table">
+                                    <thead>
+                                        <tr>
+                                            <th>Name</th>
+                                            <th>Role</th>
+                                            <th>Last Active (minutes)</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <th>Hugo</th>
+                                            <th>Administrator</th>
+                                            <th>-</th>
+                                        </tr>
+                                        <tr>
+                                            <th>Miguel</th>
+                                            <th>Administrator</th>
+                                            <th>-</th>
+                                        </tr>
+                                        <tr>
+                                            <th>Peter</th>
+                                            <th>Mechanic</th>
+                                            <th>60</th>
+                                        </tr>
+                                        <tr>
+                                            <th>Diego</th>
+                                            <th>Mechanic</th>
+                                            <th>20</th>
+                                        </tr>
+                                        <tr>
+                                            <th>John</th>
+                                            <th>Mechanic</th>
+                                            <th>5</th>
+                                        </tr>
+                                    </tbody>
+                                </table>
                             </div>
-                            <div class="col-xl-6 col-md-12">
-                                <div class="card bg-black text-white mb-4">
-                                    <div class="card-header">Missing</div>
-                                    <div class="card-body"></div>
-                                    <div class="card-footer d-flex align-items-center justify-content-between">
-                                        <a class="small text-white stretched-link" href="#">View Details</a>
-                                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                            <div class="col-xl-0 col-md-0" id="col_2">
+                                <div class="card mb-4 collapse collapse-horizontal">
+                                    <div class="card-header text-center"><h4>User Information</h4></div>
+                                    <div class="card-body text-center">
+                                      <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp" alt="avatar"
+                                        class="rounded-circle img-fluid" style="width: 150px;">
+                                      <h5 class="my-3"></h5>
+                                      <p class="text-muted mb-1"></p>
+                                      <div class="d-flex justify-content-center mb-2">
+                                        <button type="button" class="btn btn-primary">Follow</button>
+                                        <button type="button" class="btn btn-outline-primary ms-1">Message</button>
+                                      </div>
                                     </div>
-                                </div>
+                                  </div>
                             </div>
                         </div>
                     </div>
@@ -173,5 +206,6 @@
         <script src="assets/demo/chart-bar-demo.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js" crossorigin="anonymous"></script>
         <script src="js/datatables-simple-demo.js"></script>
+        <script src="js/userInfo.js"></script>
     </body>
 </html>

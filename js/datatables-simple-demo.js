@@ -16,4 +16,9 @@ window.addEventListener('DOMContentLoaded', event => {
     if (activity_table) {
         new simpleDatatables.DataTable(activity_table);
     }
+
+    //const user_table = document.getElementById('user_table');
+    //if (user_table) {
+        //new simpleDatatables.DataTable(user_table);
+    //}
 });
