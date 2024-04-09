@@ -1,0 +1,27 @@
+[
+ {
+   "Name": "Hugo",
+   "Role": "Administrator",
+   "Last Active (minutes)": "-"
+ },
+ {
+   "Name": "Miguel",
+   "Role": "Administrator",
+   "Last Active (minutes)": "-"
+ },
+ {
+   "Name": "Peter",
+   "Role": "Mechanic",
+   "Last Active (minutes)": "60"
+ },
+ {
+   "Name": "Diego",
+   "Role": "Mechanic",
+   "Last Active (minutes)": "20"
+ },
+ {
+   "Name": "John",
+   "Role": "Mechanic",
+   "Last Active (minutes)": "5"
+ }
+]

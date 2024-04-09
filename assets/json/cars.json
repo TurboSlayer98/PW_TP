@@ -1,0 +1,152 @@
+[
+ {
+   "Picture": "https://www.google.pt/url?sa=i&url=https%3A%2F%2Fwww.autoblog.com%2Fbuy%2F2018-Ford-Focus-SE__4dr_Hatchback%2F&psig=AOvVaw29nEzog3GsoEo5jzUvKAm9&ust=1712756826221000&source=images&cd=vfe&opi=89978449&ved=0CBIQjRxqFwoTCPCLkcWitYUDFQAAAAAdAAAAABAE",
+   "Brand": "Ford",
+   "Model": "Focus",
+   "Year": "2018",
+   "Plate": "ABC-1234",
+   "Color": "Blue",
+   "Door_Number": "4",
+   "Kilometers": "25000"
+ },
+ {
+   "Picture": "",
+   "Brand": "Toyota",
+   "Model": "Corolla",
+   "Year": "2019",
+   "Plate": "DEF-5678",
+   "Color": "Red",
+   "Door_Number": "4",
+   "Kilometers": "32000"
+ },
+ {
+   "Picture": "",
+   "Brand": "Honda",
+   "Model": "Civic",
+   "Year": "2020",
+   "Plate": "GHI-9012",
+   "Color": "Silver",
+   "Door_Number": "4",
+   "Kilometers": "18000"
+ },
+ {
+   "Picture": "",
+   "Brand": "Chevrolet",
+   "Model": "Malibu",
+   "Year": "2017",
+   "Plate": "JKL-3456",
+   "Color": "Black",
+   "Door_Number": "4",
+   "Kilometers": "40000"
+ },
+ {
+   "Picture": "",
+   "Brand": "Volkswagen",
+   "Model": "Jetta",
+   "Year": "2016",
+   "Plate": "MNO-7890",
+   "Color": "White",
+   "Door_Number": "4",
+   "Kilometers": "55000"
+ },
+ {
+   "Picture": "",
+   "Brand": "BMW",
+   "Model": "3 Series",
+   "Year": "2019",
+   "Plate": "PQR-1234",
+   "Color": "Gray",
+   "Door_Number": "4",
+   "Kilometers": "28000"
+ },
+ {
+   "Picture": "",
+   "Brand": "Mercedes-Benz",
+   "Model": "C-Class",
+   "Year": "2020",
+   "Plate": "STU-5678",
+   "Color": "Black",
+   "Door_Number": "4",
+   "Kilometers": "20000"
+ },
+ {
+   "Picture": "",
+   "Brand": "Audi",
+   "Model": "A4",
+   "Year": "2018",
+   "Plate": "VWX-9012",
+   "Color": "Blue",
+   "Door_Number": "4",
+   "Kilometers": "35000"
+ },
+ {
+   "Picture": "",
+   "Brand": "Hyundai",
+   "Model": "Elantra",
+   "Year": "2019",
+   "Plate": "YZA-3456",
+   "Color": "Silver",
+   "Door_Number": "4",
+   "Kilometers": "30000"
+ },
+ {
+   "Picture": "",
+   "Brand": "Fiat",
+   "Model": "500",
+   "Year": "2015",
+   "Plate": "BCD-7890",
+   "Color": "Red",
+   "Door_Number": "2",
+   "Kilometers": "60000"
+ },
+ {
+   "Picture": "",
+   "Brand": "Renault",
+   "Model": "Clio",
+   "Year": "2017",
+   "Plate": "EFG-1234",
+   "Color": "Yellow",
+   "Door_Number": "5",
+   "Kilometers": "45000"
+ },
+ {
+   "Picture": "",
+   "Brand": "Peugeot",
+   "Model": "208",
+   "Year": "2018",
+   "Plate": "HIJ-5678",
+   "Color": "Black",
+   "Door_Number": "5",
+   "Kilometers": "38000"
+ },
+ {
+   "Picture": "",
+   "Brand": "Nissan",
+   "Model": "Sentra",
+   "Year": "2016",
+   "Plate": "KLM-9012",
+   "Color": "White",
+   "Door_Number": "4",
+   "Kilometers": "50000"
+ },
+ {
+   "Picture": "",
+   "Brand": "Subaru",
+   "Model": "Impreza",
+   "Year": "2019",
+   "Plate": "NOP-3456",
+   "Color": "Blue",
+   "Door_Number": "4",
+   "Kilometers": "24000"
+ },
+ {
+   "Picture": "",
+   "Brand": "Mazda",
+   "Model": "3",
+   "Year": "2017",
+   "Plate": "QRS-7890",
+   "Color": "Red",
+   "Door_Number": "4",
+   "Kilometers": "42000"
+ }
+]

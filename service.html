@@ -126,115 +126,81 @@
                     <div class="container-fluid px-4">
                         <h1 class="mt-4 mb-4">Service</h1>
                         <div class="row">
-                            <div class="col-xl-12 col-md-12">
+                            <div class="col-xl-6 col-md-6">
                                 <div class="card text-black mb-4">
                                     <div class="card-header">Em Espera</div>
                                     <div class="card-body">
-                                        <table id="datatablesSimple">
-                                            <thead>
-                                                <tr>
-                                                    <th>Brand</th>
-                                                    <th>Model</th>
-                                                    <th>Year</th>
-                                                    <th>Plate</th>
-                                                    <th>Color</th>
-                                                    <th>Door Number</th>
-                                                    <th>Kilometers</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td>Ford</td>
-                                                    <td>Focus</td>
-                                                    <td>2018</td>
-                                                    <td>ABC-1234</td>
-                                                    <td>Blue</td>
-                                                    <td>4</td>
-                                                    <td>25000</td>
-                                                  </tr>
-                                                  <tr>
-                                                    <td>Toyota</td>
-                                                    <td>Corolla</td>
-                                                    <td>2019</td>
-                                                    <td>DEF-5678</td>
-                                                    <td>Red</td>
-                                                    <td>4</td>
-                                                    <td>32000</td>
-                                                  </tr>
-                                                  <tr>
-                                                    <td>Honda</td>
-                                                    <td>Civic</td>
-                                                    <td>2020</td>
-                                                    <td>GHI-9012</td>
-                                                    <td>Silver</td>
-                                                    <td>4</td>
-                                                    <td>18000</td>
-                                                  </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                    <div class="card-footer d-flex align-items-center justify-content-between">
-                                        <a class="small text-white stretched-link" href="#">View Details</a>
-                                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                                        <p onload="countWaitingCars()"></p>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-xl-12 col-md-12">
-                                <div class="card bg-warning text-black mb-4">
-                                    <div class="card-header">Manutenção</div>
-                                    <div class="collapse" id="cardCollapse_1">
-                                        <div class="card-body">
-                                            <table id="datatablesSimple1">
-                                                <thead>
-                                                    <tr>
-                                                        <th>Brand</th>
-                                                        <th>Model</th>
-                                                        <th>Year</th>
-                                                        <th>Plate</th>
-                                                        <th>Color</th>
-                                                        <th>Door Number</th>
-                                                        <th>Kilometers</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <tr>
-                                                        <td>Ford</td>
-                                                        <td>Focus</td>
-                                                        <td>2018</td>
-                                                        <td>ABC-1234</td>
-                                                        <td>Blue</td>
-                                                        <td>4</td>
-                                                        <td>25000</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Toyota</td>
-                                                        <td>Corolla</td>
-                                                        <td>2019</td>
-                                                        <td>DEF-5678</td>
-                                                        <td>Red</td>
-                                                        <td>4</td>
-                                                        <td>32000</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Honda</td>
-                                                        <td>Civic</td>
-                                                        <td>2020</td>
-                                                        <td>GHI-9012</td>
-                                                        <td>Silver</td>
-                                                        <td>4</td>
-                                                        <td>18000</td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                    </div>
-                                    <div class="card-footer d-flex align-items-center justify-content-between">
-                                        <a class="small text-white stretched-link" href="#cardCollapse_1" data-bs-toggle="collapse" aria-expanded="false" aria-controls="cardCollapse_1">View Details</a>
-                                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                            <div class="col-xl-6 col-md-6">
+                                <div class="card text-black mb-4">
+                                    <div class="card-header">Concluídos</div>
+                                    <div class="card-body">
+                                        <p onload="countFinishedCars()"></p>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                        <div class="row">
+                            <h3 class="mt-4 mb-4">In Service</h3>
+                        </div>
+                        <div class="row row-cols-1 row-cols-md-2 g-4" id="cardContainer">
+
+                            <div class="col">
+                              <div class="card">
+                                <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp" class="card-img-top" alt="..." style="width: 150px;">
+                                <div class="card-body">
+                                  <h5 class="card-title">Ford Focus</h5>
+                                  <label for="year-p" class="form-label d-inline">Year: </label><p class="d-inline" id="year-p">2018</p><br>
+                                  <label for="plate-p" class="form-label d-inline">Plate: </label><p class="d-inline" id="plate-p">ABC-1234</p><br>
+                                  <label for="color-p" class="form-label d-inline">Color: </label><p class="d-inline" id="color-p">Blue</p><br>
+                                  <label for="doors-p" class="form-label d-inline">Nº of Doors: </label><p class="d-inline" id="doors-p">4</p><br>
+                                  <label for="kms-p" class="form-label d-inline">Kilometers: </label><p class="d-inline" id="kms-p">25000</p><br>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col">
+                              <div class="card">
+                                <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp" class="card-img-top" alt="..." style="width: 150px;">
+                                <div class="card-body">
+                                    <h5 class="card-title">Ford Focus</h5>
+                                  <label for="year-p" class="form-label d-inline">Year: </label><p class="d-inline" id="year-p">2018</p><br>
+                                  <label for="plate-p" class="form-label d-inline">Plate: </label><p class="d-inline" id="plate-p">ABC-1234</p><br>
+                                  <label for="color-p" class="form-label d-inline">Color: </label><p class="d-inline" id="color-p">Blue</p><br>
+                                  <label for="doors-p" class="form-label d-inline">Nº of Doors: </label><p class="d-inline" id="doors-p">4</p><br>
+                                  <label for="kms-p" class="form-label d-inline">Kilometers: </label><p class="d-inline" id="kms-p">25000</p><br>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col">
+                              <div class="card">
+                                <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp" class="card-img-top" alt="..." style="width: 150px;">
+                                <div class="card-body">
+                                    <h5 class="card-title">Ford Focus</h5>
+                                  <label for="year-p" class="form-label d-inline">Year: </label><p class="d-inline" id="year-p">2018</p><br>
+                                  <label for="plate-p" class="form-label d-inline">Plate: </label><p class="d-inline" id="plate-p">ABC-1234</p><br>
+                                  <label for="color-p" class="form-label d-inline">Color: </label><p class="d-inline" id="color-p">Blue</p><br>
+                                  <label for="doors-p" class="form-label d-inline">Nº of Doors: </label><p class="d-inline" id="doors-p">4</p><br>
+                                  <label for="kms-p" class="form-label d-inline">Kilometers: </label><p class="d-inline" id="kms-p">25000</p><br>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col">
+                              <div class="card">
+                                <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp" class="card-img-top" alt="..." style="width: 150px;">
+                                <div class="card-body">
+                                    <h5 class="card-title">Ford Focus</h5>
+                                  <label for="year-p" class="form-label d-inline">Year: </label><p class="d-inline" id="year-p">2018</p><br>
+                                  <label for="plate-p" class="form-label d-inline">Plate: </label><p class="d-inline" id="plate-p">ABC-1234</p><br>
+                                  <label for="color-p" class="form-label d-inline">Color: </label><p class="d-inline" id="color-p">Blue</p><br>
+                                  <label for="doors-p" class="form-label d-inline">Nº of Doors: </label><p class="d-inline" id="doors-p">4</p><br>
+                                  <label for="kms-p" class="form-label d-inline">Kilometers: </label><p class="d-inline" id="kms-p">25000</p><br>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
                     </div>
                 </main>
                 <footer class="py-4 bg-light mt-auto">
