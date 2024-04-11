@@ -32,7 +32,7 @@
                         <li><a class="dropdown-item" href="#!">Settings</a></li>
                         <li><a class="dropdown-item" href="#!">Activity Log</a></li>
                         <li><hr class="dropdown-divider" /></li>
-                        <li><a class="dropdown-item" href="#!">Logout</a></li>
+                        <li><a class="dropdown-item" href="login.html">Logout</a></li>
                     </ul>
                 </li>
             </ul>
@@ -60,28 +60,61 @@
                                 <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                                 Employes
                             </a>
+                            <a class="nav-link" href="clients.html">
+                                <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                                Clients
+                            </a>
                     </div>
                 </nav>
             </div>
             <div id="layoutSidenav_content">
                 <main>
                     <div class="container-fluid px-4">
-                        <h1 class="mt-4 mb-2">Dashboard</h1>
-                        <ol class="breadcrumb mb-4">
-                            <li class="breadcrumb-item active">Dashboard</li>
-                        </ol>
+                        <h1 class="mt-4 mb-4">Dashboard</h1>
                         <div class="row">
-                            <div class="col-xl-6 col-md-12">
-                                <div class="card bg-info text-white mb-4">
-                                    <div class="card-header">Carros em Oficina</div>
+                            <div class="col-xl-3 col-md-6">
+                                <div class="card mb-4">
+                                    <div class="card-header">In Shop Cars</div>
                                     <div class="card-body"><p class="text-center fs-1">15</p></div>
                                     <div class="card-footer d-flex align-items-center justify-content-between">
-                                        <a class="small text-white stretched-link" href="cars.html">View Details</a>
-                                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                                        <a class="small stretched-link" href="cars.html">View Details</a>
+                                        <div class="small"><i class="fas fa-angle-right"></i></div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-xl-6 col-md-12">
+                            <div class="col-xl-3 col-md-6">
+                                <div class="card mb-4">
+                                    <div class="card-header">In Service Cars</div>
+                                    <div class="card-body"><p class="text-center fs-1">4</p></div>
+                                    <div class="card-footer d-flex align-items-center justify-content-between">
+                                        <a class="small stretched-link" href="service.html">View Details</a>
+                                        <div class="small"><i class="fas fa-angle-right"></i></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-3 col-md-6">
+                                <div class="card mb-4">
+                                    <div class="card-header">In Service Mechanics</div>
+                                    <div class="card-body"><p class="text-center fs-1">2</p></div>
+                                    <div class="card-footer d-flex align-items-center justify-content-between">
+                                        <a class="small stretched-link" href="employes.html">View Details</a>
+                                        <div class="small"><i class="fas fa-angle-right"></i></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-3 col-md-6">
+                                <div class="card mb-4">
+                                    <div class="card-header">Finished Today</div>
+                                    <div class="card-body"><p class="text-center fs-1">0</p></div>
+                                    <div class="card-footer d-flex align-items-center justify-content-between">
+                                        <a class="small stretched-link" href="service.html">View Details</a>
+                                        <div class="small"><i class="fas fa-angle-right"></i></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xl-12 col-md-12">
                                 <div class="card text-black mb-4">
                                     <div class="card-header">Calendar</div>
                                     <div class="card-body">
@@ -89,8 +122,6 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="row">
                         </div>
                     </div>
                 </main>

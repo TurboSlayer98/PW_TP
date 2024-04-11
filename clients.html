@@ -72,10 +72,10 @@
                     <div class="container-fluid px-4">
                         <div class="row mt-4 mb-4">
                             <div class="col-6">
-                                <h1>Employes</h1>
+                                <h1>Clients</h1>
                             </div>
                             <div class="col-6 d-inline-flex justify-content-end align-items-end">
-                                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#newUserModal">New User</button>
+                                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#newUserModal">New Client</button>
                             </div>
                         </div>
                         <div class="row">
@@ -86,11 +86,9 @@
                                             <thead>
                                                 <tr>
                                                     <th>Name</th>
-                                                    <th>Position</th>
-                                                    <th>Shop</th>
-                                                    <th>Age</th>
-                                                    <th>Start date</th>
-                                                    <th>Salary</th>
+                                                    <th>Email</th>
+                                                    <th>Phone</th>
+                                                    <th>Address</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -121,41 +119,27 @@
                             <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
                               <div class="modal-content">
                                 <div class="modal-header">
-                                  <h5 class="modal-title">New User</h5>
+                                  <h5 class="modal-title">New Client</h5>
                                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
                                     <form>
-                                        <form>
-                                            <div class="form-floating mb-3">
-                                                <input class="form-control" id="inputFirstName" type="text" placeholder="" />
-                                                <label for="inputFirstName">First Name</label>
-                                            </div>
-                                            <div>
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="inputRoleA">
-                                                    <label class="form-check-label" for="inputRoleA">
-                                                        Administrator
-                                                    </label>
-                                                </div>
-                                            </div>
-                                            <div>
-                                                <div class="form-check mb-3">
-                                                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="inputRoleM">
-                                                    <label class="form-check-label" for="inputRoleM">
-                                                        Mechanic
-                                                    </label>
-                                                </div>
-                                            </div>
-                                            <div class="form-floating mb-3">
-                                                <input class="form-control" id="inputPhone" type="tel" placeholder="" />
-                                                <label for="inputPhone">Phone</label>
-                                            </div>
-                                            <div class="form-floating mb-3">
-                                                <input class="form-control" id="inputAddress" type="text" placeholder="" />
-                                                <label for="inputAddress">Address</label>
-                                            </div>
-                                        </form>
+                                        <div class="form-floating mb-3">
+                                            <input class="form-control" id="inputFirstName" type="text" placeholder="name@example.com" />
+                                            <label for="inputFirstName">First Name</label>
+                                        </div>
+                                        <div class="form-floating mb-3">
+                                            <input class="form-control" id="inputEmail" type="email" placeholder="name@example.com" />
+                                            <label for="inputEmail">Email address</label>
+                                        </div>
+                                        <div class="form-floating mb-3">
+                                            <input class="form-control" id="inputPhone" type="tel" placeholder="name@example.com" />
+                                            <label for="inputPhone">Phone</label>
+                                        </div>
+                                        <div class="form-floating mb-3">
+                                            <input class="form-control" id="inputAddress" type="text" placeholder="name@example.com" />
+                                            <label for="inputAddress">Address</label>
+                                        </div>
                                     </form>
                                 </div>
                                 <div class="modal-footer">
