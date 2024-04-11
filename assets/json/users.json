@@ -1,27 +1,22 @@
 [
  {
    "Name": "Hugo",
-   "Role": "Administrator",
-   "Last Active (minutes)": "-"
+   "Role": "Administrator"
  },
  {
    "Name": "Miguel",
-   "Role": "Administrator",
-   "Last Active (minutes)": "-"
+   "Role": "Administrator"
  },
  {
    "Name": "Peter",
-   "Role": "Mechanic",
-   "Last Active (minutes)": "60"
+   "Role": "Mechanic"
  },
  {
    "Name": "Diego",
-   "Role": "Mechanic",
-   "Last Active (minutes)": "20"
+   "Role": "Mechanic"
  },
  {
    "Name": "John",
-   "Role": "Mechanic",
-   "Last Active (minutes)": "5"
+   "Role": "Mechanic"
  }
 ]
