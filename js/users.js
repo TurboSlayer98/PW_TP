@@ -8,10 +8,7 @@ document.addEventListener("DOMContentLoaded", function() {
               row.innerHTML = `
                   <td>${user.Name}</td>
                   <td>${user.Role}</td>
-                  <td>-</td>
-                  <td>-</td>
-                  <td>-</td>
-                  <td>-</td>
+                  <td>${user.Age}</td>
               `;
               tableBody.appendChild(row);
           });
