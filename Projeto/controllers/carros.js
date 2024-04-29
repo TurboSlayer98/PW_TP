@@ -4,11 +4,11 @@ const fs = require('fs');
 exports.getAll = async (req, res) => {
 
     //ler o ficheiro local
-    const datajson = fs.readFileSync("data/local/data.json", "utf-8");
+    const datajson = fs.readFileSync("../data/local/cars.json", "utf-8");
     //parse do json
     const data = JSON.parse(datajson);
     //devolver os carros
-    return res.send(data.carros);
+    return res.send(data.cars);
     //return res.send("ok");
 }
 
@@ -21,13 +21,13 @@ exports.getById = async (req, res) => {
     //obter o id do carro
     const id = req.params.id;
     //ler o ficheiro local
-    const datajson = fs.readFileSync("data/local/data.json", "utf-8");
+    const datajson = fs.readFileSync("../data/local/cars.json", "utf-8");
     //parse do json
     const data = JSON.parse(datajson);
     //procurar um carro com o id
-    const carros = data.carros.filter(carros => carros.id == id);
+    const cars = data.cars.filter(cars => cars.id == id);
     //devolve o carro
-    res.send(carros);
+    res.send(cars);
 }
 
 //cria um carro
@@ -39,13 +39,13 @@ exports.create = async (req, res) => {
     //obter o carro pelas características enviadas
     const {id, Marca, Detalhes, Foto} = req.body;
     //ler o ficheiro local
-    const datajson = fs.readFileSync("data/local/data.json", "utf-8");
+    const datajson = fs.readFileSync("../data/local/cars.json", "utf-8");
     //parse do json
     const data = JSON.parse(datajson);
     //adicionar carro à lista
-    data.carros.push(req.body);
+    data.cars.push(req.body);
     //Criar o novo ficheiro com o carro adicionado
-    fs.writeFileSync('data/local/data.json', JSON.stringify(data));
+    fs.writeFileSync('../data/local/cars.json', JSON.stringify(data));
     //devolve o novo carro
     return res.status(201).send(req.body);
 }
@@ -60,7 +60,7 @@ exports.update = async (req, res) => {
     //obter o carro pelas características enviadas
     const {id, Marca, Detalhes, Foto} = req.body;
     //ler o ficheiro local
-    const datajson = fs.readFileSync("data/local/data.json", "utf-8");
+    const datajson = fs.readFileSync("../data/local/cars.json", "utf-8");
     //parse do json
     const data = JSON.parse(datajson);
     //procurar o carro para actualizar
@@ -70,7 +70,7 @@ exports.update = async (req, res) => {
     carros.Detalhes = Detalhes;
     carros.Foto = Foto;
     //actualizar no ficheiro json
-    fs.writeFileSync('data/local/data.json', JSON.stringify(data));
+    fs.writeFileSync('../data/local/cars.json', JSON.stringify(data));
     //devolver o carro alterado
     return res.send({id, Marca, Detalhes, Foto});
 }
@@ -85,7 +85,7 @@ exports.delete = async (req, res) => {
     //obter o id do carro
     const id = req.params.id;
      //ler o ficheiro local
-     const datajson = fs.readFileSync("data/local/data.json", "utf-8");
+     const datajson = fs.readFileSync("../data/local/cars.json", "utf-8");
      //parse do json
      const data = JSON.parse(datajson);
      //procurar o indice do carro a ser procurada
@@ -95,7 +95,7 @@ exports.delete = async (req, res) => {
         // Exclua o estudante do array de estudantes
         const apagaCarro = data.carros.splice(carroIndex, 1)[0];
         // Atualize o ficheiro json
-        fs.writeFileSync('data/local/data.json', JSON.stringify(data));
+        fs.writeFileSync('../data/local/cars.json', JSON.stringify(data));
         // Retorne o carro excluído como resposta
         return res.status(200).send(apagaCarro);
     } else {
