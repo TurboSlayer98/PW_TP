@@ -5,7 +5,7 @@ class CarDisplay {
 
   async fetchCars() {
     try {
-      const response = await fetch('http://localhost:4242/api/cars/');
+      const response = await fetch('http://localhost:4242/api/cars');
       //const response = await fetch('../assets/json/cars.json');
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);

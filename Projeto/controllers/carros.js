@@ -2,9 +2,8 @@ const fs = require('fs');
 
 //devolve todos os carros
 exports.getAll = async (req, res) => {
-
     //ler o ficheiro local
-    const datajson = fs.readFileSync("../data/local/cars.json", "utf-8");
+    const datajson = fs.readFileSync("C:/Users/hffm9/OneDrive - Instituto Politécnico de Viana do Castelo/IPVC - 2023_2024/Programação Web/PW_TP/Projeto/data/local/cars.json", "utf-8");
     //parse do json
     const data = JSON.parse(datajson);
     //devolver os carros
@@ -21,7 +20,7 @@ exports.getById = async (req, res) => {
     //obter o id do carro
     const id = req.params.id;
     //ler o ficheiro local
-    const datajson = fs.readFileSync("../data/local/cars.json", "utf-8");
+    const datajson = fs.readFileSync("C:/Users/hffm9/OneDrive - Instituto Politécnico de Viana do Castelo/IPVC - 2023_2024/Programação Web/PW_TP/Projeto/data/local/cars.json", "utf-8");
     //parse do json
     const data = JSON.parse(datajson);
     //procurar um carro com o id

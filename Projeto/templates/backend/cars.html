@@ -70,11 +70,62 @@
             <div id="layoutSidenav_content">
                 <main>
                     <div class="container-fluid px-4">
-                        <h1 class="mt-4 mb-2">Cars</h1>
-                        <ol class="breadcrumb mb-4">
-                            <li class="breadcrumb-item active">Cars</li>
-                        </ol>
-                        <div class="row" id="cardCarros"></div>
+                        <div class="row mt-4 mb-4" id="cardCarros">
+                            <div class="col-6">
+                                <h1>Cars</h1>
+                            </div>
+                            <div class="col-6 d-inline-flex justify-content-end align-items-end">
+                                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#newCarModal">New Car</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modalContainer">
+                        <div class="modal fade" id="newCarModal" tabindex="-1">
+                            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                              <div class="modal-content">
+                                <div class="modal-header">
+                                  <h5 class="modal-title">New Car</h5>
+                                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <form>
+                                        <div class="form-floating mb-3">
+                                            <input class="form-control" id="inputBrand" type="text" placeholder="" />
+                                            <label for="inputBrand">Brand</label>
+                                        </div>
+                                        <div class="form-floating mb-3">
+                                            <input class="form-control" id="inputModel" type="email" placeholder="" />
+                                            <label for="inputModel">Model</label>
+                                        </div>
+                                        <div class="form-floating mb-3">
+                                            <input class="form-control" id="inputYear" type="tel" placeholder="" />
+                                            <label for="inputYear">Year</label>
+                                        </div>
+                                        <div class="form-floating mb-3">
+                                            <input class="form-control" id="inputPlate" type="text" placeholder="" />
+                                            <label for="inputPlate">Plate</label>
+                                        </div>
+                                        <div class="form-floating mb-3">
+                                            <input class="form-control" id="inputColor" type="text" placeholder="" />
+                                            <label for="inputColor">Color</label>
+                                        </div>
+                                        <div class="form-floating mb-3">
+                                            <input class="form-control" id="inputDoorNumber" type="text" placeholder="" />
+                                            <label for="inputDoorNumber">Door Number</label>
+                                        </div>
+                                        <div class="form-floating mb-3">
+                                            <input class="form-control" id="inputKilometers" type="text" placeholder="" />
+                                            <label for="inputKilometers">Kilometers</label>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                  <button type="button" class="btn btn-success" onclick="adicionarCarro()">Add</button>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
                     </div>
                 </main>
                 <footer class="py-4 bg-light mt-auto">
