@@ -1,11 +1,11 @@
-class CarDisplay {
+/*class CarDisplay {
   constructor(containerId) {
     this.container = document.getElementById(containerId);
   }
 
   async fetchCars() {
     try {
-      const response = await fetch('http://localhost:4242/api/cars/');
+      const response = await fetch('http://localhost:4242/api/cars');
       //const response = await fetch('../assets/json/cars.json');
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
@@ -63,3 +63,66 @@ class CarDisplay {
 
 const carDisplay = new CarDisplay('cardCarros');
 carDisplay.fetchCars();
+*/
+
+const listarCarros = async () => {
+  let strHtml = ``
+  //alert("aaaa")
+  const response = await fetch('http://localhost:4242/api/cars')
+  const lv = await response.json()
+  for (const car of lv) {
+      alert(car.Brand);
+      strHtml += cars.map(car => `
+      <div class="col-xl-3 col-md-6 mb-5 d-inline-flex justify-content-center">
+        <div class="card" style="width: 18rem;">
+          <img class="card-img-top" src="${car.Picture}" alt="${car.Brand} ${car.Model}">
+          <h4 class="card-title mb-4 mt-4">${car.Brand} ${car.Model}</h4>
+          <button class="btn btn-primary" data-bs-toggle="modal" onclick="carDisplay.loadModal(${JSON.stringify(car)})">Details</button>
+        </div>
+      </div>
+    `).join('');
+  }
+  document.getElementById("cardCarros").innerHTML = strHtml;
+}
+listarCarros();
+
+const adicionarCarro = async () => {
+  var car = {
+    //ID: document.getElementById("").value,
+    //Picture: document.getElementById("").value,
+    Brand: document.getElementById("inputBrand").value,
+    Model: document.getElementById("inputModel").value,
+    Year: document.getElementById("inputYear").value,
+    Plate: document.getElementById("inputPlate").value,
+    Color: document.getElementById("inputColor").value,
+    Door_Number: document.getElementById("inputDoorNumber").value,
+    Kilometers: document.getElementById("inputKilometers").value,
+  };
+  //alert(dados.Brand); //alert(dados.Detalhes) //alert(dados.Foto)
+  fetch('http://localhost:4242/api/cars/create', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(car)
+  })
+    .then(response => {
+      // Verifica se a resposta foi bem sucedida
+      if (!response.ok) {
+        throw new Error('Erro ao obter os dados');
+      }
+      // Converte a resposta para JSON
+      return response.json();
+    })
+
+    .then(data => {
+      // Faz algo com os dados 
+      //console.log(data);
+      resposta = "O carro com a marca: " + car.Brand + " foi adicionado com sucesso!"
+      alert(resposta)
+      listarCarros();
+
+    })
+    .catch(error => {
+      // Captura qualquer erro de rede ou tratamento de erro
+      console.error('Houve um erro:', error);
+    });
+}

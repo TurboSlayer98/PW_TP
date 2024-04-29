@@ -82,8 +82,8 @@ const listarCarros = async () => {
 }
 listarCarros();
 
-const carDisplay = new CarDisplay('cardCarros');
-carDisplay.fetchCars();
+//const carDisplay = new CarDisplay('cardCarros');
+//carDisplay.fetchCars();
 
 const adicionarCarro = async () => {
   var dados = {
