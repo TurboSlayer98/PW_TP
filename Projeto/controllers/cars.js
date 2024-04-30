@@ -25,9 +25,9 @@ exports.getById = async (req, res) => {
     //parse do json
     const data = JSON.parse(datajson);
     //procurar um carro com o id
-    const car = data.car.find(car => car.ID == id);
+    const cars = data.cars.filter(car => car.id == id);
     //devolve o carro
-    res.send(car);
+    res.send(cars);
 }
 
 //cria um carro
@@ -58,13 +58,13 @@ exports.update = async (req, res) => {
     //return res.send(req.body);
 
     //obter o carro pelas características enviadas
-    const {Picture,Brand,Model,Year,Plate,Color,Door_Number,Kilometers} = req.body;
+    const {id = 1,Picture,Brand,Model,Year,Plate,Color,Door_Number,Kilometers} = req.body;
     //ler o ficheiro local
     const datajson = fs.readFileSync(path + 'cars.json', "utf-8");
     //parse do json
     const data = JSON.parse(datajson);
     //procurar o carro para actualizar
-    const cars = data.cars.find(car => car.ID == id);
+    const cars = data.cars.find(car => car.id == id);
     //atualizar as caraterísticas
     cars.Picture = Picture;
     cars.Brand = Brand;
@@ -77,7 +77,7 @@ exports.update = async (req, res) => {
     //actualizar no ficheiro json
     fs.writeFileSync(path + 'cars.json', JSON.stringify(data));
     //devolver o carro alterado
-    return res.send({Picture,Brand,Model,Year,Plate,Color,Door_Number,Kilometers});
+    return res.send({id,Picture,Brand,Model,Year,Plate,Color,Door_Number,Kilometers});
 }
 
 //apaga o carro com o id
@@ -94,15 +94,15 @@ exports.delete = async (req, res) => {
      //parse do json
      const data = JSON.parse(datajson);
      //procurar o indice do carro a ser procurada
-    const carroIndex  = data.carros.findIndex(carro => carro.ID == id);
+    const carIndex  = data.cars.findIndex(car => car.id == id);
      // Verifique se o carro foi encontrado
-    if (carroIndex !== -1) {
+    if (carIndex !== -1) {
         // Exclua o estudante do array de estudantes
-        const apagaCarro = data.carros.splice(carroIndex, 1)[0];
+        const deleteCar = data.cars.splice(carIndex, 1)[0];
         // Atualize o ficheiro json
         fs.writeFileSync(path + 'cars.json', JSON.stringify(data));
         // Retorne o carro excluído como resposta
-        return res.status(200).send(apagaCarro);
+        return res.status(200).send(deleteCar);
     } else {
         // Caso o carro não seja encontrado, retorne uma resposta de erro
         return res.status(404).send("Carro não encontrado");

@@ -28,7 +28,7 @@ const listCars = async () => {
 listCars();
 
 const listCarDetails = async (id) => {
-  const response = await fetch('http://localhost:4242/api/cars/:' + id);
+  const response = await fetch('http://localhost:4242/api/cars/' + id);
   const car = await response.json();
 
   console.log(car);
@@ -85,8 +85,7 @@ const addCar = async () => {
 }
 
 const updateCar = async () => {
-  var dados = {
-    //ID: document.getElementById("").value,
+  var car = {
     //Picture: document.getElementById("").value,
     Brand: document.getElementById("updateCar_inputBrand").value,
     Model: document.getElementById("updateCar_inputModel").value,
@@ -94,12 +93,12 @@ const updateCar = async () => {
     Plate: document.getElementById("updateCar_inputPlate").value,
     Color: document.getElementById("updateCar_inputColor").value,
     Door_Number: document.getElementById("updateCar_inputDoorNumber").value,
-    Kilometers: document.getElementById("updateCar_inputKilometers").value,
+    Kilometers: document.getElementById("updateCar_inputKilometers").value
   };
-  fetch("http://localhost:4242/api/carros/update", {
+  fetch("http://localhost:4242/api/cars/update", {
     method: "PUT",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(dados),
+    body: JSON.stringify(car),
   })
     .then((response) => {
       // Verifica se a resposta foi bem sucedida
@@ -112,7 +111,7 @@ const updateCar = async () => {
     .then((data) => {
       // Faz algo com os dados
       //console.log(data);
-      resposta = "O carro com a marca: " + dados.Marca + " foi atualizado com sucesso!";
+      resposta = "O carro com a marca: " + car.Brand + " foi atualizado com sucesso!";
       alert(resposta);
       listarCarros();
     })
