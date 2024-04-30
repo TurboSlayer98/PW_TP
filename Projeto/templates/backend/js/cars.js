@@ -66,21 +66,19 @@ carDisplay.fetchCars();
 */
 
 const listarCarros = async () => {
-  let strHtml = ``
-  //alert("aaaa")
-  const response = await fetch('http://localhost:4242/api/cars')
-  const lv = await response.json()
+  let strHtml = ``;
+  const response = await fetch('http://localhost:4242/api/cars');
+  const lv = await response.json();
   for (const car of lv) {
-      alert(car.Brand);
-      strHtml += cars.map(car => `
+      strHtml += `
       <div class="col-xl-3 col-md-6 mb-5 d-inline-flex justify-content-center">
         <div class="card" style="width: 18rem;">
           <img class="card-img-top" src="${car.Picture}" alt="${car.Brand} ${car.Model}">
           <h4 class="card-title mb-4 mt-4">${car.Brand} ${car.Model}</h4>
-          <button class="btn btn-primary" data-bs-toggle="modal" onclick="carDisplay.loadModal(${JSON.stringify(car)})">Details</button>
+          <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#upModal" onclick="listDetails(${car.ID})">Details</button>
         </div>
       </div>
-    `).join('');
+      `;
   }
   document.getElementById("cardCarros").innerHTML = strHtml;
 }

@@ -91,42 +91,133 @@
                                 <div class="modal-body">
                                     <form>
                                         <div class="form-floating mb-3">
-                                            <input class="form-control" id="inputBrand" type="text" placeholder="" />
-                                            <label for="inputBrand">Brand</label>
+                                            <input class="form-control" id="newCar_inputBrand" type="text" placeholder="" />
+                                            <label for="newCar_inputBrand">Brand</label>
                                         </div>
                                         <div class="form-floating mb-3">
-                                            <input class="form-control" id="inputModel" type="email" placeholder="" />
-                                            <label for="inputModel">Model</label>
+                                            <input class="form-control" id="newCar_inputModel" type="email" placeholder="" />
+                                            <label for="newCar_inputModel">Model</label>
                                         </div>
                                         <div class="form-floating mb-3">
-                                            <input class="form-control" id="inputYear" type="tel" placeholder="" />
-                                            <label for="inputYear">Year</label>
+                                            <input class="form-control" id="newCar_inputYear" type="tel" placeholder="" />
+                                            <label for="newCar_inputYear">Year</label>
                                         </div>
                                         <div class="form-floating mb-3">
-                                            <input class="form-control" id="inputPlate" type="text" placeholder="" />
-                                            <label for="inputPlate">Plate</label>
+                                            <input class="form-control" id="newCar_inputPlate" type="text" placeholder="" />
+                                            <label for="newCar_inputPlate">Plate</label>
                                         </div>
                                         <div class="form-floating mb-3">
-                                            <input class="form-control" id="inputColor" type="text" placeholder="" />
-                                            <label for="inputColor">Color</label>
+                                            <input class="form-control" id="newCar_inputColor" type="text" placeholder="" />
+                                            <label for="newCar_inputColor">Color</label>
                                         </div>
                                         <div class="form-floating mb-3">
-                                            <input class="form-control" id="inputDoorNumber" type="text" placeholder="" />
-                                            <label for="inputDoorNumber">Door Number</label>
+                                            <input class="form-control" id="newCar_inputDoorNumber" type="text" placeholder="" />
+                                            <label for="newCar_inputDoorNumber">Door Number</label>
                                         </div>
                                         <div class="form-floating mb-3">
-                                            <input class="form-control" id="inputKilometers" type="text" placeholder="" />
-                                            <label for="inputKilometers">Kilometers</label>
+                                            <input class="form-control" id="newCar_inputKilometers" type="text" placeholder="" />
+                                            <label for="newCar_inputKilometers">Kilometers</label>
                                         </div>
                                     </form>
                                 </div>
                                 <div class="modal-footer">
-                                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                  <button type="button" class="btn btn-success" onclick="adicionarCarro()">Add</button>
+                                  <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                                  <button type="button" class="btn btn-success" onclick="addCar()">Add</button>
                                 </div>
                               </div>
                             </div>
-                          </div>
+                        </div>
+                        <div class="modal fade" id="carDetailsModal" tabindex="-1">
+                            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                              <div class="modal-content">
+                                <div class="modal-header">
+                                  <h5 class="modal-title">Car Details</h5>
+                                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <form>
+                                        <div class="form-floating mb-3">
+                                            <p class="form-control" id="carDetails_inputBrand"></p>
+                                            <label for="carDetails_inputBrand">Brand</label>
+                                        </div>
+                                        <div class="form-floating mb-3">
+                                            <p class="form-control" id="carDetails_inputModel"></p>
+                                            <label for="carDetails_inputModel">Model</label>
+                                        </div>
+                                        <div class="form-floating mb-3">
+                                            <p class="form-control" id="carDetails_inputYear"></p>
+                                            <label for="carDetails_inputYear">Year</label>
+                                        </div>
+                                        <div class="form-floating mb-3">
+                                            <p class="form-control" id="carDetails_inputPlate"></p>
+                                            <label for="carDetails_inputPlate">Plate</label>
+                                        </div>
+                                        <div class="form-floating mb-3">
+                                            <p class="form-control" id="carDetails_inputColor"></p>
+                                            <label for="carDetails_inputColor">Color</label>
+                                        </div>
+                                        <div class="form-floating mb-3">
+                                            <p class="form-control" id="carDetails_inputDoorNumber"></p>
+                                            <label for="carDetails_inputDoorNumber">Door Number</label>
+                                        </div>
+                                        <div class="form-floating mb-3">
+                                            <p class="form-control" id="carDetails_inputKilometers"></p>
+                                            <label for="carDetails_inputKilometers">Kilometers</label>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                  <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                                </div>
+                              </div>
+                            </div>
+                        </div>
+                        <div class="modal fade" id="updateCarModal" tabindex="-1">
+                            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                              <div class="modal-content">
+                                <div class="modal-header">
+                                  <h5 class="modal-title">Update Car</h5>
+                                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <form>
+                                        <div class="form-floating mb-3">
+                                            <input class="form-control" id="updateCar_inputBrand" type="text" placeholder="" />
+                                            <label for="updateCar_inputBrand">Brand</label>
+                                        </div>
+                                        <div class="form-floating mb-3">
+                                            <input class="form-control" id="updateCar_inputModel" type="text" placeholder="" />
+                                            <label for="updateCar_inputModel">Model</label>
+                                        </div>
+                                        <div class="form-floating mb-3">
+                                            <input class="form-control" id="updateCar_inputYear" type="text" placeholder="" />
+                                            <label for="updateCar_inputYear">Year</label>
+                                        </div>
+                                        <div class="form-floating mb-3">
+                                            <input class="form-control" id="updateCar_inputPlate" type="text" placeholder="" />
+                                            <label for="updateCar_inputPlate">Plate</label>
+                                        </div>
+                                        <div class="form-floating mb-3">
+                                            <input class="form-control" id="updateCar_inputColor" type="text" placeholder="" />
+                                            <label for="updateCar_inputColor">Color</label>
+                                        </div>
+                                        <div class="form-floating mb-3">
+                                            <input class="form-control" id="updateCar_inputDoorNumber" type="text" placeholder="" />
+                                            <label for="updateCar_inputDoorNumber">Door Number</label>
+                                        </div>
+                                        <div class="form-floating mb-3">
+                                            <input class="form-control" id="updateCar_inputKilometers" type="text" placeholder="" />
+                                            <label for="updateCar_inputKilometers">Kilometers</label>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                  <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                                  <button type="button" class="btn btn-success" onclick="updateCar()">Update</button>
+                                </div>
+                              </div>
+                            </div>
+                        </div>
                     </div>
                 </main>
                 <footer class="py-4 bg-light mt-auto">

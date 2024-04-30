@@ -1,11 +1,10 @@
 const fs = require('fs');
-
-const path = "C:/Users/hffm9/OneDrive - Instituto Politécnico de Viana do Castelo/IPVC - 2023_2024/Programação Web/PW_TP/Projeto/data/local/";
+const path = 'C:/Users/hffm9/OneDrive - Instituto Politécnico de Viana do Castelo/IPVC - 2023_2024/Programação Web/PW_TP/Projeto/data/local/';
 
 //devolve todos os carros
 exports.getAll = async (req, res) => {
     //ler o ficheiro local
-    const datajson = fs.readFileSync(path + "cars.json", "utf-8");
+    const datajson = fs.readFileSync(path + 'cars.json', "utf-8");
     //parse do json
     const data = JSON.parse(datajson);
     //devolver os carros
@@ -22,13 +21,13 @@ exports.getById = async (req, res) => {
     //obter o id do carro
     const id = req.params.id;
     //ler o ficheiro local
-    const datajson = fs.readFileSync(path + "cars.json", "utf-8");
+    const datajson = fs.readFileSync(path + 'cars.json', "utf-8");
     //parse do json
     const data = JSON.parse(datajson);
     //procurar um carro com o id
-    const cars = data.cars.filter(cars => cars.ID == id);
+    const car = data.car.find(car => car.ID == id);
     //devolve o carro
-    res.send(cars);
+    res.send(car);
 }
 
 //cria um carro
@@ -40,13 +39,13 @@ exports.create = async (req, res) => {
     //obter o carro pelas características enviadas
     const {id, Marca, Detalhes, Foto} = req.body;
     //ler o ficheiro local
-    const datajson = fs.readFileSync(path + "cars.json", "utf-8");
+    const datajson = fs.readFileSync(path + 'cars.json', "utf-8");
     //parse do json
     const data = JSON.parse(datajson);
     //adicionar carro à lista
     data.cars.push(req.body);
     //Criar o novo ficheiro com o carro adicionado
-    fs.writeFileSync(path + "cars.json", JSON.stringify(data));
+    fs.writeFileSync(path + 'cars.json', JSON.stringify(data));
     //devolve o novo carro
     return res.status(201).send(req.body);
 }
@@ -59,21 +58,26 @@ exports.update = async (req, res) => {
     //return res.send(req.body);
 
     //obter o carro pelas características enviadas
-    const {id, Marca, Detalhes, Foto} = req.body;
+    const {Picture,Brand,Model,Year,Plate,Color,Door_Number,Kilometers} = req.body;
     //ler o ficheiro local
-    const datajson = fs.readFileSync(path + "cars.json", "utf-8");
+    const datajson = fs.readFileSync(path + 'cars.json', "utf-8");
     //parse do json
     const data = JSON.parse(datajson);
     //procurar o carro para actualizar
-    const carros = data.carros.find(carro => carro.id == id);
+    const cars = data.cars.find(car => car.ID == id);
     //atualizar as caraterísticas
-    carros.Marca = Marca;
-    carros.Detalhes = Detalhes;
-    carros.Foto = Foto;
+    cars.Picture = Picture;
+    cars.Brand = Brand;
+    cars.Model = Model;
+    cars.Year = Year;
+    cars.Plate = Plate;
+    cars.Color = Color;
+    cars.Door_Number = Door_Number;
+    cars.Kilometers = Kilometers;
     //actualizar no ficheiro json
-    fs.writeFileSync(path + "cars.json", JSON.stringify(data));
+    fs.writeFileSync(path + 'cars.json', JSON.stringify(data));
     //devolver o carro alterado
-    return res.send({id, Marca, Detalhes, Foto});
+    return res.send({Picture,Brand,Model,Year,Plate,Color,Door_Number,Kilometers});
 }
 
 //apaga o carro com o id
@@ -86,7 +90,7 @@ exports.delete = async (req, res) => {
     //obter o id do carro
     const id = req.params.id;
      //ler o ficheiro local
-     const datajson = fs.readFileSync(path + "cars.json", "utf-8");
+     const datajson = fs.readFileSync(path + 'cars.json', "utf-8");
      //parse do json
      const data = JSON.parse(datajson);
      //procurar o indice do carro a ser procurada
@@ -96,7 +100,7 @@ exports.delete = async (req, res) => {
         // Exclua o estudante do array de estudantes
         const apagaCarro = data.carros.splice(carroIndex, 1)[0];
         // Atualize o ficheiro json
-        fs.writeFileSync(path + "cars.json", JSON.stringify(data));
+        fs.writeFileSync(path + 'cars.json', JSON.stringify(data));
         // Retorne o carro excluído como resposta
         return res.status(200).send(apagaCarro);
     } else {

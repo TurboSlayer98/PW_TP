@@ -1,5 +1,5 @@
 const carrosRouter = require('express').Router();
-const controller = require('../controllers/carros');
+const controller = require('../controllers/cars');
 
 //CRUD para o Carro
 carrosRouter.get('/', controller.getAll); //le todos
