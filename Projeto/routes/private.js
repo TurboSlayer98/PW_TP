@@ -13,4 +13,22 @@ privadoRouter.get('/cars', (req, res) => {
     res.sendFile(caminho + "cars.html");
 });
 
+// Define uma rota para a página HTML
+privadoRouter.get('/service', (req, res) => {
+    // Envie o arquivo HTML como resposta para a solicitação HTTP
+    res.sendFile(caminho + "service.html");
+});
+
+// Define uma rota para a página HTML
+privadoRouter.get('/employes', (req, res) => {
+    // Envie o arquivo HTML como resposta para a solicitação HTTP
+    res.sendFile(caminho + "employes.html");
+});
+
+// Define uma rota para a página HTML
+privadoRouter.get('/clients', (req, res) => {
+    // Envie o arquivo HTML como resposta para a solicitação HTTP
+    res.sendFile(caminho + "clients.html");
+});
+
 module.exports = privadoRouter;
