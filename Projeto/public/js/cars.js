@@ -1,6 +1,6 @@
 const listCars = async () => {
   let strHtml = ``;
-  const response = await fetch('http://localhost:4242/api/cars');
+  const response = await fetch('http://localhost:4242/api/local/cars');
   const lv = await response.json();
   for (const car of lv) {
       strHtml += `

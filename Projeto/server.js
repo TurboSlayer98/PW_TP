@@ -5,9 +5,12 @@ const cors = require('cors');
 const express = require('express');
 
 //const privaterouter = require('./routes/index');
-const privaterouter = require('./routes/private.js');
-const publicrouter = require('./routes/public.js');
-const router = require('./routes/index.js');
+const privaterouter = require('./routes/local/private.js');
+const publicrouter = require('./routes/local/public.js');
+
+const router = require('./routes/local/index.js');
+
+const pgs = require('./routes/pgs/index.js');
 
 const app = express();
 app.use(bodyParser.json());
@@ -19,6 +22,8 @@ app.use('/private/', privaterouter);
 app.use('/public/', publicrouter);
 
 app.use('/api/', router);
+//PostgresSQL
+app.use('/api/pgs/', pgs);
 
 const port = process.env.SERVER_PORT || 8080;
 app.listen(port, () => {
