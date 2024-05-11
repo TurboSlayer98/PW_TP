@@ -1,7 +1,7 @@
 const carsRouter = require('express').Router();
 const controller = require('../../controllers/pgs/cars.js');
 
-carsRouter.get('/testConn', controller.testConnection);
+//carsRouter.get('/testConn', controller.testConnection);
 
 //CRUD para o Carro
 carsRouter.get('/', controller.getAll); //le todos

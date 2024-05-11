@@ -47,20 +47,20 @@
                                 <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                                 Dashboard
                             </a>
-                            <a class="nav-link" href="http://localhost:4242/private/service">
+                            <a class="nav-link" href="service.html">
                                 <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                                 Service
                             </a>
-                            <a class="nav-link" href="http://localhost:4242/private/cars">
+                            <a class="nav-link" href="cars.html">
                                 <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                                 Cars
                             </a>
                             <div class="sb-sidenav-menu-heading">HR</div>
-                            <a class="nav-link" href="http://localhost:4242/private/employes">
+                            <a class="nav-link" href="employes.html">
                                 <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                                 Employes
                             </a>
-                            <a class="nav-link" href="http://localhost:4242/private/clients">
+                            <a class="nav-link" href="clients.html">
                                 <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                                 Clients
                             </a>
@@ -95,11 +95,11 @@
                                             <label for="newCar_inputBrand">Brand</label>
                                         </div>
                                         <div class="form-floating mb-3">
-                                            <input class="form-control" id="newCar_inputModel" type="email" placeholder="" />
+                                            <input class="form-control" id="newCar_inputModel" type="text" placeholder="" />
                                             <label for="newCar_inputModel">Model</label>
                                         </div>
                                         <div class="form-floating mb-3">
-                                            <input class="form-control" id="newCar_inputYear" type="tel" placeholder="" />
+                                            <input class="form-control" id="newCar_inputYear" type="number" placeholder="" />
                                             <label for="newCar_inputYear">Year</label>
                                         </div>
                                         <div class="form-floating mb-3">
@@ -111,11 +111,11 @@
                                             <label for="newCar_inputColor">Color</label>
                                         </div>
                                         <div class="form-floating mb-3">
-                                            <input class="form-control" id="newCar_inputDoorNumber" type="text" placeholder="" />
+                                            <input class="form-control" id="newCar_inputDoorNumber" type="number" placeholder="" />
                                             <label for="newCar_inputDoorNumber">Door Number</label>
                                         </div>
                                         <div class="form-floating mb-3">
-                                            <input class="form-control" id="newCar_inputKilometers" type="text" placeholder="" />
+                                            <input class="form-control" id="newCar_inputKilometers" type="number" placeholder="" />
                                             <label for="newCar_inputKilometers">Kilometers</label>
                                         </div>
                                     </form>
@@ -137,83 +137,83 @@
                                 <div class="modal-body">
                                     <form>
                                         <div class="form-floating mb-3">
-                                            <input class="form-control" id="carDetails_inputBrand" type="text"/>
-                                            <label for="carDetails_inputBrand">Brand</label>
+                                            <p class="form-control" id="carDetails_Brand"></p>
+                                            <label for="carDetails_Brand">Brand</label>
                                         </div>
                                         <div class="form-floating mb-3">
-                                            <p class="form-control" id="carDetails_inputModel"></p>
-                                            <label for="carDetails_inputModel">Model</label>
+                                            <p class="form-control" id="carDetails_Model"></p>
+                                            <label for="carDetails_Model">Model</label>
                                         </div>
                                         <div class="form-floating mb-3">
-                                            <p class="form-control" id="carDetails_inputYear"></p>
-                                            <label for="carDetails_inputYear">Year</label>
+                                            <p class="form-control" id="carDetails_Year"></p>
+                                            <label for="carDetails_Year">Year</label>
                                         </div>
                                         <div class="form-floating mb-3">
-                                            <p class="form-control" id="carDetails_inputPlate"></p>
-                                            <label for="carDetails_inputPlate">Plate</label>
+                                            <p class="form-control" id="carDetails_Plate"></p>
+                                            <label for="carDetails_Plate">Plate</label>
                                         </div>
                                         <div class="form-floating mb-3">
-                                            <p class="form-control" id="carDetails_inputColor"></p>
-                                            <label for="carDetails_inputColor">Color</label>
+                                            <p class="form-control" id="carDetails_Color"></p>
+                                            <label for="carDetails_Color">Color</label>
                                         </div>
                                         <div class="form-floating mb-3">
-                                            <p class="form-control" id="carDetails_inputDoorNumber"></p>
-                                            <label for="carDetails_inputDoorNumber">Door Number</label>
+                                            <p class="form-control" id="carDetails_DoorNumber"></p>
+                                            <label for="carDetails_DoorNumber">Door Number</label>
                                         </div>
                                         <div class="form-floating mb-3">
-                                            <p class="form-control" id="carDetails_inputKilometers"></p>
-                                            <label for="carDetails_inputKilometers">Kilometers</label>
+                                            <p class="form-control" id="carDetails_Kilometers"></p>
+                                            <label for="carDetails_Kilometers">Kilometers</label>
                                         </div>
                                     </form>
                                 </div>
                                 <div class="modal-footer">
-                                  <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
                                 </div>
                               </div>
                             </div>
                         </div>
-                        <div class="modal fade" id="updateCarModal" tabindex="-1">
+                        <div class="modal fade" id="CarModal" tabindex="-1">
                             <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
                               <div class="modal-content">
                                 <div class="modal-header">
-                                  <h5 class="modal-title">Update Car</h5>
+                                  <h5 class="modal-title">Car Details</h5>
                                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
                                     <form>
                                         <div class="form-floating mb-3">
-                                            <input class="form-control" id="updateCar_inputBrand" type="text"/>
-                                            <label for="updateCar_inputBrand">Brand</label>
+                                            <input class="form-control" id="Car_inputBrand" type="text"/>
+                                            <label for="Car_inputBrand">Brand</label>
                                         </div>
                                         <div class="form-floating mb-3">
-                                            <input class="form-control" id="updateCar_inputModel" type="text"/>
-                                            <label for="updateCar_inputModel">Model</label>
+                                            <input class="form-control" id="Car_inputModel" type="text"/>
+                                            <label for="Car_inputModel">Model</label>
                                         </div>
                                         <div class="form-floating mb-3">
-                                            <input class="form-control" id="updateCar_inputYear" type="text"/>
-                                            <label for="updateCar_inputYear">Year</label>
+                                            <input class="form-control" id="Car_inputYear" type="number"/>
+                                            <label for="Car_inputYear">Year</label>
                                         </div>
                                         <div class="form-floating mb-3">
-                                            <input class="form-control" id="updateCar_inputPlate" type="text"/>
-                                            <label for="updateCar_inputPlate">Plate</label>
+                                            <input class="form-control" id="Car_inputPlate" type="text"/>
+                                            <label for="Car_inputPlate">Plate</label>
                                         </div>
                                         <div class="form-floating mb-3">
-                                            <input class="form-control" id="updateCar_inputColor" type="text"/>
-                                            <label for="updateCar_inputColor">Color</label>
+                                            <input class="form-control" id="Car_inputColor" type="text"/>
+                                            <label for="Car_inputColor">Color</label>
                                         </div>
                                         <div class="form-floating mb-3">
-                                            <input class="form-control" id="updateCar_inputDoorNumber" type="text"/>
-                                            <label for="updateCar_inputDoorNumber">Door Number</label>
+                                            <input class="form-control" id="Car_inputDoorNumber" type="number"/>
+                                            <label for="Car_inputDoorNumber">Door Number</label>
                                         </div>
                                         <div class="form-floating mb-3">
-                                            <input class="form-control" id="updateCar_inputKilometers" type="text"/>
-                                            <label for="updateCar_inputKilometers">Kilometers</label>
+                                            <input class="form-control" id="Car_inputKilometers" type="number"/>
+                                            <label for="Car_inputKilometers">Kilometers</label>
                                         </div>
                                     </form>
                                 </div>
                                 <div class="modal-footer">
-                                  <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
-                                  <button type="button" class="btn btn-success" onclick="updateCar()">Update</button>
+                                    <button type="button" class="btn btn-success" data-bs-dismiss="modal" onclick="updateCar()">Update</button>
+                                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
                                 </div>
                               </div>
                             </div>
@@ -235,12 +235,12 @@
             </div>
         </div>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-        <script src="js/scripts.js"></script>
+        <script src="../src/js/scripts.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
         <script src="assets/demo/chart-area-demo.js"></script>
         <script src="assets/demo/chart-bar-demo.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js" crossorigin="anonymous"></script>
         <script src="js/datatables-simple-demo.js"></script>
-        <script src="js/cars.js"></script>
+        <script src="../src/js/cars.js"></script>
     </body>
 </html>

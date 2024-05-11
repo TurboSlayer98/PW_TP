@@ -11,6 +11,8 @@ privadoRouter.use(express.static(path.join(__dirname, '../public')));
 privadoRouter.get('/cars', (req, res) => {
     // Envie o arquivo HTML como resposta para a solicitação HTTP
     res.sendFile(caminho + "cars.html");
+
+    
 });
 
 // Define uma rota para a página HTML
