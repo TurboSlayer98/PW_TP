@@ -45,7 +45,7 @@ exports.getById = async (req, res) => {
 //criar um carro
 exports.create = async (req, res) => {
     //apanhar os dados enviados
-    const { Picture,Brand,Model,Year,Plate,Color,Door_Number,Kilometers } = req.body;
+    const { Brand, Model, Year, Plate, Color, Door_Number, Kilometers, Picture } = req.body;
     try {
         //criar um novo carro
         const car = await prisma.Cars.create({
@@ -69,13 +69,13 @@ exports.create = async (req, res) => {
 
 //Atualizar um carro
 exports.update = async (req, res) => {
-    const { Brand,Model,Year,Plate,Color,Door_Number,Kilometers } = req.body;
+    const { Brand,Model,Year,Plate,Color,Door_Number,Kilometers,Picture } = req.body;
 
     try {
         //procurar o carro com id e atualizar os dados
         const car = await prisma.Cars.update({
             where: {
-                plate: {equals: Plate}
+                plate: plate,
             },
             data: {
                 brand: Brand,
@@ -84,7 +84,8 @@ exports.update = async (req, res) => {
                 plate: Plate,
                 color: Color,
                 door_number: Door_Number,
-                kilometers: Kilometers
+                kilometers: Kilometers,
+                picture: Picture
             },
         })
         //devolve o carro atualizado
@@ -100,7 +101,7 @@ exports.delete = async (req, res) => {
     const id = req.params.id;
     try {
         //delete student
-        await prisma.Cars.delete({
+        await prisma.cars.delete({
             where: {
                 id: id*1,
             },

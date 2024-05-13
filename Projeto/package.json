@@ -8,7 +8,7 @@
     "start": "nodemon server.js"
   },
   "prisma": {
-    "schema": "data/prisma/schema.prisma"
+    "schema": "backend/data/prisma/schema.prisma"
   },
   "repository": {
     "type": "git",

@@ -4,17 +4,15 @@ const listCars = async () => {
   const lv = await response.json();
   for (const car of lv) {
       strHtml += `
-      <div class="col-xl-3 col-md-6 mb-5 d-inline-flex justify-content-center">
-        <div class="card" style="width: 18rem;">
+      <div class="col-md-4">
+        <div class="card">
           <img class="card-img-top" src="${car.picture}" alt="${car.brand} ${car.model}">
-          <h4 class="card-title mb-4 mt-4">${car.brand} ${car.model}</h4>
-          <div class="col-12 d-inline-flex justify-content-center">
-            <div class="col-4">
-              <button class="btn btn-danger w-100" onclick="deleteCar(${car.id})">Delete</button>
-            </div>
-            <div class="col-4">
-              <button class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#CarModal" onclick="listCarDetails(${car.id})">Details</button>
-            </div>
+          <div class="card-img-overlay">
+            <h4 class="card-title">${car.brand} ${car.model}</h4>
+            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#CarModal" onclick="listCarDetails(${car.id})">Details</button>
+          </div>
+          <div class="card-footer">
+            <button class="btn btn-danger" onclick="deleteCar(${car.id})"><i class="fa fa-solid fa-trash"></i></button>
           </div>
         </div>
       </div>
@@ -35,6 +33,7 @@ const listCarDetails = async (id) => {
   document.getElementById("Car_inputColor").value = car.color;
   document.getElementById("Car_inputDoorNumber").value = car.door_number;
   document.getElementById("Car_inputKilometers").value = car.kilometers;
+  document.getElementById("Car_inputPicture").value = car.picture;
 }
 
 const addCar = async () => {
@@ -46,6 +45,7 @@ const addCar = async () => {
     Color: document.getElementById("newCar_inputColor").value,
     Door_Number: document.getElementById("newCar_inputDoorNumber").value,
     Kilometers: document.getElementById("newCar_inputKilometers").value,
+    Picture: document.getElementById("newCar_inputPicture").value,
   };
   fetch('http://localhost:4242/api/pgs/cars/create', {
     method: 'POST',
@@ -65,7 +65,7 @@ const addCar = async () => {
       // Faz algo com os dados 
       resposta = "O carro com a marca: " + car.brand + " foi adicionado com sucesso!"
       alert(resposta)
-      listarCarros();
+      listCars();
 
     })
     .catch(error => {
@@ -82,7 +82,8 @@ const updateCar = async () => {
     Plate: document.getElementById("Car_inputPlate").value,
     Color: document.getElementById("Car_inputColor").value,
     Door_Number: document.getElementById("Car_inputDoorNumber").value,
-    Kilometers: document.getElementById("Car_inputKilometers").value
+    Kilometers: document.getElementById("Car_inputKilometers").value,
+    Picture: document.getElementById("newCar_inputPicture").value,
   };
   fetch("http://localhost:4242/api/pgs/cars/update", {
     method: "PUT",
@@ -101,8 +102,8 @@ const updateCar = async () => {
       // Faz algo com os dados
       //console.log(data);
       resposta = "O carro com a marca: " + car.brand + " foi atualizado com sucesso!";
-      alert(resposta);
-      listarCarros();
+      alert(resposta)
+      listCars();
     })
     .catch((error) => {
       // Captura qualquer erro de rede ou tratamento de erro
