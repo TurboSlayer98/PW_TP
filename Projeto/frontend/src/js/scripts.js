@@ -97,6 +97,30 @@ const newUser = async () => {
       console.log(data);
       // Guardar o token no local storage
       localStorage.setItem("token", data.token);
-      window.location.href = "http://localhost:4242/";
+      window.location.href = "http://localhost:4242/private/dashboard";
     }
 };
+
+// Função para definir um cookie
+function setCookie(nome, valor, diasParaExpirar) {
+  const data = new Date();
+  data.setTime(data.getTime() + diasParaExpirar * 24 * 60 * 60 * 1000);
+  const expira = "expires=" + data.toUTCString();
+  document.cookie = nome + "=" + valor + ";" + expira + ";path=/";
+}
+
+// Função para obter o valor de um cookie
+function getCookie(nome) {
+  const nomeCookie = nome + "=";
+  const cookies = decodeURIComponent(document.cookie).split(";");
+  for (let i = 0; i < cookies.length; i++) {
+    let cookie = cookies[i];
+    while (cookie.charAt(0) === " ") {
+      cookie = cookie.substring(1);
+    }
+    if (cookie.indexOf(nomeCookie) === 0) {
+      return cookie.substring(nomeCookie.length, cookie.length);
+    }
+  }
+  return "";
+}

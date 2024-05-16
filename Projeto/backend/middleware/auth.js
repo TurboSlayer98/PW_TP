@@ -2,11 +2,9 @@ const authenticateUtil = require('../utils/authenticate.js');
 
 module.exports = async (req, res, next) => {
     const accessToken = req.headers['authorization']; // req.headers['x-access-token'];
-
     if (!accessToken) {
         return res.status(401).send("Não está autorizado");
     }
-
     try {
         const bearer = accessToken.split(' ');
         const bearerToken = bearer[1];

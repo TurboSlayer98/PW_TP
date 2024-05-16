@@ -10,9 +10,8 @@ exports.signin = async (req, res) => {
         const user = await prisma.users.findUnique({
             where: {email: email,},
         })
-       
         if (user) {
-          var passwordIsValid=password==user.password;
+          var passwordIsValid = bcrypt.compareSync(password,user.password);
           if (passwordIsValid) {
             const accessToken = authenticateUtil.generateAccessToken({ id: user.id, name: user.username, role : user.role });
             res.status(200).json({ name: user.username, token: accessToken });
@@ -33,7 +32,7 @@ exports.signup = async (req, res) => {
                 firsname: firstname,
                 lastname: lastname,
                 email: email,
-                password: password
+                password: bcrypt.hashSync(password, 8),
             },
         })
         return this.signin(req, res);

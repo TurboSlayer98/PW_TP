@@ -1,15 +1,7 @@
 const router = require('express').Router();
 
-const dashboardRouter = require('./dashboard');
-const carsRouter = require('./cars');
-const serviceRouter = require('./service');
-const employesRouter = require('./employes');
-const clientsRouter = require('./clients');
+const publicRouter = require('./');
 
-router.use('/dashboard', dashboardRouter);
-router.use('/cars', carsRouter);
-router.use('/service', serviceRouter);
-router.use('/employes', employesRouter);
-router.use('/clients', clientsRouter);
+router.use('/', publicRouter);
 
 module.exports = router;
