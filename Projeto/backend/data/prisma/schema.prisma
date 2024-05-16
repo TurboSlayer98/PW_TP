@@ -14,7 +14,7 @@ datasource db {
 }
 
 model Cars {
-  car_id Int @id @default(autoincrement()) @unique
+  id Int @id @default(autoincrement())
   brand String
   model String
   year Int
@@ -23,11 +23,14 @@ model Cars {
   door_number Int
   kilometers Int
   picture String
-  user_id Users @relation(fields[car_id], references[user_id])
+  user Users @relation(fields: [user_id], references: [id])
+  user_id Int @unique
+  service Services[]
+  service_id Int @unique
 }
 
 model Users {
-  user_id Int @id @default(autoincrement()) @unique
+  id Int @id @default(autoincrement())
   username String
   email String @unique
   password String
@@ -36,6 +39,8 @@ model Users {
   gender Gender
   account_status String
   role Role @default(CLIENT)
+  car Cars[]
+  appointment Appointments[]
 }
 
 enum Role {
@@ -50,13 +55,17 @@ enum Gender {
 }
 
 model Services {
-  service_id Int @id @unique
+  id Int @id @default(autoincrement())
+  
   service_name String
   service_description String
   service_price Decimal
   service_duration String
   service_status Status @default(Pending)
-  car_id Cars @relation(fields: [car_id], references: [service_id])
+  car Cars @relation(fields: [car_id], references: [id])
+  car_id Int @unique
+  appointment Appointments[]
+  appointment_id Int @unique
 }
 
 enum Status {
@@ -66,24 +75,11 @@ enum Status {
 }
 
 model Appointments {
-  appointment_id Int @id @unique
-  user_id Users @relation(fields: [appointment_id], references: [user_id])
-  service_id Services @relation(fields: [appointment_id], references: [service_id])
-  car_id Cars @relation(fields: [car_id], references: [appointment_id])
+  id Int @id @default(autoincrement())
   appointment_datetime DateTime
   appointment_status Status @default(Pending)
-}
-
-model Invoices {
-  invoice_id Int @id @unique
-  appointment_id Appointments @relation(fields: [invoice_id], references: [appointment_id])
-  invoice_total Decimal
-  invoice_paymentstatus Payment
-  invoice_dateissued DateTime
-  invoice_datepayed DateTime
-}
-
-enum Payment {
-  Pending
-  Payed
+  user Users @relation(fields: [user_id], references: [id])
+  user_id Int @unique
+  service Services @relation(fields: [service_id], references: [id])
+  service_id Int @unique
 }
