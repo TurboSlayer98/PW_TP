@@ -14,7 +14,7 @@ datasource db {
 }
 
 model Cars {
-  id Int @id @default(autoincrement())
+  car_id Int @id @default(autoincrement()) @unique
   brand String
   model String
   year Int
@@ -23,4 +23,67 @@ model Cars {
   door_number Int
   kilometers Int
   picture String
+  user_id Users @relation(fields[car_id], references[user_id])
+}
+
+model Users {
+  user_id Int @id @default(autoincrement()) @unique
+  username String
+  email String @unique
+  password String
+  firsname String
+  lastname String
+  gender Gender
+  account_status String
+  role Role @default(CLIENT)
+}
+
+enum Role {
+  ADMIN
+  MECHANIC
+  CLIENT
+}
+
+enum Gender {
+  Masculin
+  Feminine
+}
+
+model Services {
+  service_id Int @id @unique
+  service_name String
+  service_description String
+  service_price Decimal
+  service_duration String
+  service_status Status @default(Pending)
+  car_id Cars @relation(fields: [car_id], references: [service_id])
+}
+
+enum Status {
+  Pending
+  Confirmed
+  Completed
+}
+
+model Appointments {
+  appointment_id Int @id @unique
+  user_id Users @relation(fields: [appointment_id], references: [user_id])
+  service_id Services @relation(fields: [appointment_id], references: [service_id])
+  car_id Cars @relation(fields: [car_id], references: [appointment_id])
+  appointment_datetime DateTime
+  appointment_status Status @default(Pending)
+}
+
+model Invoices {
+  invoice_id Int @id @unique
+  appointment_id Appointments @relation(fields: [invoice_id], references: [appointment_id])
+  invoice_total Decimal
+  invoice_paymentstatus Payment
+  invoice_dateissued DateTime
+  invoice_datepayed DateTime
+}
+
+enum Payment {
+  Pending
+  Payed
 }

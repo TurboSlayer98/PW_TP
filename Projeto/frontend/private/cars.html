@@ -119,14 +119,14 @@
                                             <label for="newCar_inputKilometers">Kilometers</label>
                                         </div>
                                         <div class="form-floating mb-3">
-                                            <input class="form-control" id="newCar_inputPicture" type="url" placeholder="" />
+                                            <input class="form-control" id="newCar_inputPicture" type="text" placeholder="" />
                                             <label for="newCar_inputPicture">Picture</label>
                                         </div>
                                     </form>
                                 </div>
                                 <div class="modal-footer">
                                   <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
-                                  <button type="button" class="btn btn-success" data-bs-dismiss="modal" onclick="addCar()">Add</button>
+                                  <button type="button" class="btn btn-success" onclick="addCar()" data-bs-dismiss="modal">Add</button>
                                 </div>
                               </div>
                             </div>
@@ -216,7 +216,7 @@
                                     </form>
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-success" data-bs-dismiss="modal" onclick="updateCar()">Update</button>
+                                    <button type="button" class="btn btn-success" onclick="updateCar()" data-bs-dismiss="modal">Update</button>
                                     <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
                                 </div>
                               </div>

@@ -3,15 +3,13 @@ const listCars = async () => {
   const response = await fetch('http://localhost:4242/api/pgs/cars/');
   const lv = await response.json();
   for (const car of lv) {
-      strHtml += `
+    strHtml += `
       <div class="col-md-4">
         <div class="card">
           <img class="card-img-top" src="${car.picture}" alt="${car.brand} ${car.model}">
           <div class="card-img-overlay">
             <h4 class="card-title">${car.brand} ${car.model}</h4>
             <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#CarModal" onclick="listCarDetails(${car.id})">Details</button>
-          </div>
-          <div class="card-footer">
             <button class="btn btn-danger" onclick="deleteCar(${car.id})"><i class="fa fa-solid fa-trash"></i></button>
           </div>
         </div>
@@ -19,11 +17,11 @@ const listCars = async () => {
       `;
   }
   document.getElementById("cardCarros").innerHTML = strHtml;
-}
+};
 listCars();
 
 const listCarDetails = async (id) => {
-  const response = await fetch('http://localhost:4242/api/pgs/cars/'+id);
+  const response = await fetch('http://localhost:4242/api/pgs/cars/' + id);
   const car = await response.json();
 
   document.getElementById("Car_inputBrand").value = car.brand;
@@ -34,7 +32,7 @@ const listCarDetails = async (id) => {
   document.getElementById("Car_inputDoorNumber").value = car.door_number;
   document.getElementById("Car_inputKilometers").value = car.kilometers;
   document.getElementById("Car_inputPicture").value = car.picture;
-}
+};
 
 const addCar = async () => {
   var car = {
@@ -50,9 +48,9 @@ const addCar = async () => {
   fetch('http://localhost:4242/api/pgs/cars/create', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(car)
+    body: JSON.stringify(car),
   })
-    .then(response => {
+    .then((response) => {
       // Verifica se a resposta foi bem sucedida
       if (!response.ok) {
         throw new Error('Erro ao obter os dados');
@@ -60,19 +58,17 @@ const addCar = async () => {
       // Converte a resposta para JSON
       return response.json();
     })
-
-    .then(data => {
+    .then((data) => {
       // Faz algo com os dados 
-      resposta = "O carro com a marca: " + car.brand + " foi adicionado com sucesso!"
+      resposta = "O carro com a marca: " + car.Brand + " foi adicionado com sucesso!"
       alert(resposta)
       listCars();
-
     })
-    .catch(error => {
+    .catch((error) => {
       // Captura qualquer erro de rede ou tratamento de erro
       console.error('Houve um erro:', error);
     });
-}
+};
 
 const updateCar = async () => {
   var car = {
@@ -100,13 +96,37 @@ const updateCar = async () => {
     })
     .then((data) => {
       // Faz algo com os dados
-      //console.log(data);
-      resposta = "O carro com a marca: " + car.brand + " foi atualizado com sucesso!";
-      alert(resposta)
+      resposta = "O carro com a matricula: " + car.Plate + " foi atualizado com sucesso!";
+      alert(resposta);
       listCars();
+    })
+    .catch((error) => {
+      alert(car.Year);
+      // Captura qualquer erro de rede ou tratamento de erro
+      console.error("Houve um erro:", error);
+    });
+};
+
+const deleteCar = async (id) => {
+  fetch("http://localhost:4242/api/pgs/cars/delete/" + id, {
+    method: "DELETE",
+    headers: { "Content-Type": "application/json" },
+  })
+    .then((response) => {
+      // Verifica se a resposta foi bem sucedida
+      if (!response.ok) {
+        throw new Error("Erro ao obter os dados");
+      }
+      return response;
+    })
+    .then((car) => {
+      // Faz algo com os dados
+      resposta = "O carro foi apagado com sucesso!";
+      alert(resposta);
     })
     .catch((error) => {
       // Captura qualquer erro de rede ou tratamento de erro
       console.error("Houve um erro:", error);
     });
+    listCars();
 };

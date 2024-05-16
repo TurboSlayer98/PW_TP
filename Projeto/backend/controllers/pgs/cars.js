@@ -17,10 +17,10 @@ exports.testConnection = async (req, res) => {
 exports.getAll = async (req, res) => {
     try {
         //le toda a tabela
-        const response = await prisma.Cars.findMany();
-        res.status(200).json(response)
+        const response = await prisma.cars.findMany();
+        res.status(200).json(response);
     } catch (error) {
-        res.status(500).json({ msg: error.message })
+        res.status(500).json({ msg: error.message });
     }
 }
 
@@ -30,7 +30,7 @@ exports.getById = async (req, res) => {
     const id = req.params.id*1;
     try {
         //procura o carro com o id
-        const response = await prisma.Cars.findUnique({
+        const response = await prisma.cars.findUnique({
             where: {
                 id: id,
             },
@@ -48,7 +48,7 @@ exports.create = async (req, res) => {
     const { Brand, Model, Year, Plate, Color, Door_Number, Kilometers, Picture } = req.body;
     try {
         //criar um novo carro
-        const car = await prisma.Cars.create({
+        const car = await prisma.cars.create({
             data: {
                 brand: Brand,
                 model: Model,
@@ -57,7 +57,7 @@ exports.create = async (req, res) => {
                 color: Color,
                 door_number: Door_Number,
                 kilometers: Kilometers,
-                picture: Picture
+                picture: Picture,
             },
         })
         //devolve o carro criado
@@ -73,9 +73,9 @@ exports.update = async (req, res) => {
 
     try {
         //procurar o carro com id e atualizar os dados
-        const car = await prisma.Cars.update({
+        const car = await prisma.cars.update({
             where: {
-                plate: plate,
+                plate: car.plate,
             },
             data: {
                 brand: Brand,
@@ -85,7 +85,7 @@ exports.update = async (req, res) => {
                 color: Color,
                 door_number: Door_Number,
                 kilometers: Kilometers,
-                picture: Picture
+                picture: Picture,
             },
         })
         //devolve o carro atualizado
@@ -107,7 +107,7 @@ exports.delete = async (req, res) => {
             },
         })
         //just return ok
-        res.status(200).send("ok");
+        res.status(200).send("ok")
     } catch (error) {
         res.status(400).json({ msg: error.message })
     }
