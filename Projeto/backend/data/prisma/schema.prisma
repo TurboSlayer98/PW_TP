@@ -34,7 +34,7 @@ model Users {
   username String
   email String @unique
   password String
-  firsname String
+  firstname String
   lastname String
   gender Gender
   account_status String
@@ -50,8 +50,8 @@ enum Role {
 }
 
 enum Gender {
-  Masculin
-  Feminine
+  Male
+  Female
 }
 
 model Services {
