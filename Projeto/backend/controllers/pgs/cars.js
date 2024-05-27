@@ -57,7 +57,7 @@ exports.create = async (req, res) => {
                 color: Color,
                 door_number: Door_Number,
                 kilometers: Kilometers,
-                picture: Picture,
+                picture: Picture
             },
         })
         //devolve o carro criado

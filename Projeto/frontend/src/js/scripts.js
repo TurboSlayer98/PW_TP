@@ -3,102 +3,160 @@
     * Copyright 2013-2023 Start Bootstrap
     * Licensed under MIT (https://github.com/StartBootstrap/startbootstrap-sb-admin/blob/master/LICENSE)
     */
-    // 
+// 
 // Scripts
 // 
 
 window.addEventListener('DOMContentLoaded', event => {
 
-    // Toggle the side navigation
-    const sidebarToggle = document.body.querySelector('#sidebarToggle');
-    if (sidebarToggle) {
-        // Uncomment Below to persist sidebar toggle between refreshes
-        // if (localStorage.getItem('sb|sidebar-toggle') === 'true') {
-        //     document.body.classList.toggle('sb-sidenav-toggled');
-        // }
-        sidebarToggle.addEventListener('click', event => {
-            event.preventDefault();
-            document.body.classList.toggle('sb-sidenav-toggled');
-            localStorage.setItem('sb|sidebar-toggle', document.body.classList.contains('sb-sidenav-toggled'));
-        });
-    }
-
+  // Toggle the side navigation
+  const sidebarToggle = document.body.querySelector('#sidebarToggle');
+  if (sidebarToggle) {
+    // Uncomment Below to persist sidebar toggle between refreshes
+    // if (localStorage.getItem('sb|sidebar-toggle') === 'true') {
+    //     document.body.classList.toggle('sb-sidenav-toggled');
+    // }
+    sidebarToggle.addEventListener('click', event => {
+      event.preventDefault();
+      document.body.classList.toggle('sb-sidenav-toggled');
+      localStorage.setItem('sb|sidebar-toggle', document.body.classList.contains('sb-sidenav-toggled'));
+    });
+  }
 });
+/*
+document.addEventListener('DOMContentLoaded', event => {
+  const token = localStorage.getItem('token');
+  if (!token) {
+    // Redirect to login if token is not found
+    window.location.href = './frontend/public/index.html';
+    return;
+  }
 
-function validatePassword(){
-    var password1 = document.getElementById("inputPassword").value;
-    var password2 = document.getElementById("inputPasswordConfirm").value;
+  try {
+    const payload = JSON.parse(atob(token.split('.')[1]));
+    const userRole = payload.role;
 
-    // Validate through RegularExpression
-    var passwordcheck1 =/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,15}$/;
-
-    if (!passwordcheck1.test(password1)){
-       alert("Invalid Password");
-    return false;
+    // Check if the user's role matches the required role
+    if (userRole !== "ADMIN") {
+      alert('You do not have the required privileges to access this page.');
+      // Redirect to an appropriate page based on role
+      if (userRole === 'ADMIN') {
+        window.location.href = '../private/admins/dashboard.html';
+      } else if (userRole === 'MECHANIC') {
+        window.location.href = '../private/admins/dashboard.html';
+      } else {
+        window.location.href = '../private/users/dashboard.html';
+      }
     }
-    if(!password1.match(password2)){
-        alert("The two password fields are not the same!!");
+  } catch (error) {
+    console.error('Invalid token', error);
+    // Redirect to login if there's an error with the token
+    window.location.href = './frontend/public/index.html';
+  }
+});
+*/
+function validatePassword() {
+  var password1 = document.getElementById("inputPassword").value;
+  var password2 = document.getElementById("inputPasswordConfirm").value;
+
+  // Validate through RegularExpression
+  var passwordcheck1 = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,15}$/;
+
+  if (!passwordcheck1.test(password1)) {
+    alert("Invalid Password");
     return false;
-    }
-    newUser();
-    return true;
+  }
+  if (!password1.match(password2)) {
+    alert("The two password fields are not the same!!");
+    return false;
+  }
+  newUser();
+  return true;
 }
 
 const newUser = async () => {
-    var data = {
-        firstname: document.getElementById("inputFirstName").value,
-        lastname: document.getElementById("inputLastName").value,
-        email: document.getElementById("inputEmail").value,
-        password: document.getElementById("inputPassword").value,
-    };
-    console.log(data);
-    fetch("http://localhost:4242/api/pgs/auth/signup", {
-      method: "POST",
-      headers: {"Content-Type": "application/json",},
-      body: JSON.stringify(data),
+  var data = {
+    firstname: document.getElementById("inputFirstName").value,
+    lastname: document.getElementById("inputLastName").value,
+    email: document.getElementById("inputEmail").value,
+    password: document.getElementById("inputPassword").value,
+  };
+  console.log(data);
+  fetch("http://localhost:4242/api/pgs/auth/signup", {
+    method: "POST",
+    headers: { "Content-Type": "application/json", },
+    body: JSON.stringify(data),
+  })
+    .then((response) => {
+      // Verifica se a resposta foi bem sucedida
+      if (!response.ok) {
+        throw new Error("Erro ao obter os dados");
+      }
+      // Converte a resposta para JSON
+      return response.json();
     })
-      .then((response) => {
-        // Verifica se a resposta foi bem sucedida
-        if (!response.ok) {
-          throw new Error("Erro ao obter os dados");
-        }
-        // Converte a resposta para JSON
-        return response.json();
-      })
-      .then((data) => {
-        // Faz algo com os dados
-        alert("O " + data.firstname + data.lastname + " foi adicionado com sucesso!");
-      })
-      .catch((error) => {
-        // Captura qualquer erro de rede ou tratamento de erro
-        alert("Houve um erro:", error);
-      });
+    .then((data) => {
+      // Faz algo com os dados
+      alert("O " + data.firstname + data.lastname + " foi adicionado com sucesso!");
+    })
+    .catch((error) => {
+      // Captura qualquer erro de rede ou tratamento de erro
+      alert("Houve um erro:", error);
+    });
+};
+
+const validateLogin = async () => {
+  var dataa = {
+    email: document.getElementById("inputEmail").value,
+    password: document.getElementById("inputPassword").value,
   };
 
-  const validateLogin = async () => {
-    var data = {
-      email: document.getElementById("inputEmail").value,
-      password: document.getElementById("inputPassword").value,
-    };
-    const response= await fetch("http://localhost:4242/api/pgs/auth/signin", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    })
-    console.log(response.ok);
-    dados= await  response.json()
-    if(!response.ok){
-      alert("Error Login In");
+  /*const response= await fetch("http://localhost:4242/api/pgs/auth/signin", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
+  })
+  console.log(response.ok);
+  dados = await response.json();
+  if(!response.ok){
+    alert("Error Login In");
+  }
+  else{
+    alert("Login Succefull!");
+    console.log(data);
+    // Guardar o token no local storage
+    localStorage.setItem("token", data.token);
+    window.location.href = "http://localhost:4242/private/dashboard";
+  }*/
+
+  try {
+    const response = await fetch('http://localhost:4242/api/pgs/auth/signin', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(dataa),
+    });
+
+    if (!response.ok) {
+      const errorData = await response.json();
+      throw new Error(errorData.msg || 'Login failed');
     }
-    else{
-      alert("Login Succefull!");
-      console.log(data);
-      // Guardar o token no local storage
-      localStorage.setItem("token", data.token);
-      window.location.href = "http://localhost:4242/private/dashboard";
+
+    const data = await response.json();
+    localStorage.setItem('token', data.token);
+
+    if (data.role === 'ADMIN') {
+      window.location.href = '../private/admins/dashboard.html';
+    } else if (data.role === 'MECHANIC') {
+      window.location.href = '../private/admins/dashboard.html';
+    } else {
+      window.location.href = '../private/users/dashboard.html';
     }
+  } catch (error) {
+    console.error('An error occurred:', error);
+    alert('An error occurred during login: ' + error.message);
+  }
 };
 
 // Função para definir um cookie
@@ -123,4 +181,12 @@ function getCookie(nome) {
     }
   }
   return "";
+}
+
+function logout() {
+  // Remove the token from localStorage
+  localStorage.removeItem('token');
+
+  // Redirect to the login page
+  window.location.href = '../../public/login.html';
 }

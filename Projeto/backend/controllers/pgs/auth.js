@@ -14,7 +14,7 @@ exports.signin = async (req, res) => {
           var passwordIsValid = bcrypt.compareSync(password,user.password);
           if (passwordIsValid) {
             const accessToken = authenticateUtil.generateAccessToken({ id: user.id, name: user.username, role : user.role });
-            res.status(200).json({ name: user.username, token: accessToken });
+            res.status(200).json({ name: user.username, role: user.role, token: accessToken });
           }else{
                 res.status(401).json({ msg: "Password inválida!" });
           }

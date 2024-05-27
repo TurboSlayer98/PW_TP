@@ -46,7 +46,7 @@ exports.getById = async (req, res) => {
 //criar um carro
 exports.create = async (req, res) => {
     //apanhar os dados enviados
-    const { Username, Email, Password, Firstname, Lastname, Gender, Status, Role } = req.body;
+    const { Username, Email, Password, Firstname, Lastname, Gender, Role } = req.body;
     try {
         //criar um novo carro
         const user = await prisma.users.create({
@@ -57,7 +57,6 @@ exports.create = async (req, res) => {
                 firstname: Firstname,
                 lastname: Lastname,
                 gender: Gender,
-                account_status: Status,
                 role: Role,
             },
         })

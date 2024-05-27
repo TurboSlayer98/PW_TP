@@ -1,6 +1,10 @@
+const token = localStorage.getItem("token");
+
 const listCars = async () => {
   let strHtml = ``;
-  const response = await fetch('http://localhost:4242/api/pgs/cars/');
+  const response = await fetch('http://localhost:4242/api/pgs/cars/', {
+    method: 'GET', headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'application/json' }
+  });
   const lv = await response.json();
   for (const car of lv) {
     strHtml += `
@@ -21,7 +25,8 @@ const listCars = async () => {
 listCars();
 
 const listCarDetails = async (id) => {
-  const response = await fetch('http://localhost:4242/api/pgs/cars/' + id);
+  const response = await fetch('http://localhost:4242/api/pgs/cars/' + id, {
+    method: 'GET', headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'application/json' }});
   const car = await response.json();
 
   document.getElementById("Car_inputBrand").value = car.brand;
@@ -45,29 +50,26 @@ const addCar = async () => {
     Kilometers: document.getElementById("newCar_inputKilometers").value,
     Picture: document.getElementById("newCar_inputPicture").value,
   };
-  fetch('http://localhost:4242/api/pgs/cars/create', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(car),
-  })
-    .then((response) => {
-      // Verifica se a resposta foi bem sucedida
-      if (!response.ok) {
-        throw new Error('Erro ao obter os dados');
-      }
-      // Converte a resposta para JSON
-      return response.json();
-    })
-    .then((data) => {
-      // Faz algo com os dados 
-      resposta = "O carro com a marca: " + car.Brand + " foi adicionado com sucesso!"
-      alert(resposta)
-      listCars();
-    })
-    .catch((error) => {
-      // Captura qualquer erro de rede ou tratamento de erro
-      console.error('Houve um erro:', error);
+
+  try {
+    const response = await fetch('http://localhost:4242/api/pgs/cars/create', {
+      method: 'POST',
+      headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'application/json' },
+      body: JSON.stringify(car),
     });
+
+    if (!response.ok) {
+      throw new Error('Failed to create car');
+    }
+
+    const data = await response.json();
+    alert(`The car with plate ${car.Plate} has been added successfully!`);
+    listCars();  // Assuming this function is defined elsewhere
+
+  } catch (error) {
+    console.error('An error occurred:', error);
+    alert('An error occurred while adding the car.');
+  }
 };
 
 const updateCar = async () => {
@@ -83,7 +85,7 @@ const updateCar = async () => {
   };
   fetch("http://localhost:4242/api/pgs/cars/update", {
     method: "PUT",
-    headers: { "Content-Type": "application/json" },
+    headers: { Authorization: `Bearer ${token}`, "Content-Type": "application/json" },
     body: JSON.stringify(car),
   })
     .then((response) => {
@@ -110,7 +112,7 @@ const updateCar = async () => {
 const deleteCar = async (id) => {
   fetch("http://localhost:4242/api/pgs/cars/delete/" + id, {
     method: "DELETE",
-    headers: { "Content-Type": "application/json" },
+    headers: { Authorization: `Bearer ${token}`, "Content-Type": "application/json" },
   })
     .then((response) => {
       // Verifica se a resposta foi bem sucedida
@@ -128,5 +130,5 @@ const deleteCar = async (id) => {
       // Captura qualquer erro de rede ou tratamento de erro
       console.error("Houve um erro:", error);
     });
-    listCars();
+  listCars();
 };

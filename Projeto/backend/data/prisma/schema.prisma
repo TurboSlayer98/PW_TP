@@ -37,7 +37,6 @@ model Users {
   firstname String
   lastname String
   gender Gender
-  account_status String
   role Role @default(CLIENT)
   car Cars[]
   appointment Appointments[]
