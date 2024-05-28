@@ -69,27 +69,25 @@ exports.create = async (req, res) => {
 
 //Atualizar um carro
 exports.update = async (req, res) => {
-    const { Brand,Model,Year,Plate,Color,Door_Number,Kilometers,Picture } = req.body;
-
+    const { Username, Email, Password, Firstname, Lastname, Gender, Role } = req.body;
     try {
         //procurar o carro com id e atualizar os dados
-        const car = await prisma.cars.update({
+        const user = await prisma.users.update({
             where: {
-                plate: car.plate,
+                email: Email,
             },
             data: {
-                brand: Brand,
-                model: Model,
-                year: Year,
-                plate: Plate,
-                color: Color,
-                door_number: Door_Number,
-                kilometers: Kilometers,
-                picture: Picture,
+                username: Username,
+                email: Email,
+                password: bcrypt.hashSync(Password, 8),
+                firstname: Firstname,
+                lastname: Lastname,
+                gender: Gender,
+                role: Role,
             },
         })
         //devolve o carro atualizado
-        res.status(200).json(car)
+        res.status(200).json(user)
     } catch (error) {
         res.status(400).json({ msg: error.message })
     }
@@ -97,16 +95,13 @@ exports.update = async (req, res) => {
 
 //apagar o carro com id passado
 exports.delete = async (req, res) => {
-    //le o id do carro
     const id = req.params.id;
     try {
-        //delete student
-        await prisma.cars.delete({
+        await prisma.users.delete({
             where: {
                 id: id*1,
             },
         })
-        //just return ok
         res.status(200).send("ok")
     } catch (error) {
         res.status(400).json({ msg: error.message })
