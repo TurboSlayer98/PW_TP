@@ -1,23 +1,7 @@
-/*document.addEventListener("DOMContentLoaded", function() {
-  fetch('../assets/json/users.json')
-      .then(response => response.json())
-      .then(data => {
-          const tableBody = document.querySelector('tbody');
-          data.forEach(user => {
-              const row = document.createElement('tr');
-              row.innerHTML = `
-                  <td>${user.Name}</td>
-                  <td>${user.Role}</td>
-                  <td>${user.Age}</td>
-              `;
-              tableBody.appendChild(row);
-          });
-      })
-      .catch(error => console.error('Error fetching users data:', error));
-});
-*/
+const { request } = require("express");
 
 const token = localStorage.getItem("token");
+const currentEmail = "";
 
 const listUsers = async () => {
     let strHtml = ``;
@@ -43,7 +27,7 @@ const listUsers = async () => {
         `;
     }
     document.getElementById("usertable").innerHTML = strHtml;
-}
+};
 listUsers();
 
 const listUserData = async (id) => {
@@ -72,7 +56,7 @@ const listUserData = async (id) => {
             break;
         }
     }
-}
+};
 
 const addUser = async () => {
 
@@ -123,7 +107,7 @@ const addUser = async () => {
         console.error('An error occurred:', error);
         alert('An error occurred while adding the user.');
     }
-}
+};
 
 const updateUser = async () => {
 
@@ -172,7 +156,7 @@ const updateUser = async () => {
         console.error('An error occurred:', error);
         alert('An error occurred while updating the user.');
     }
-}
+};
 
 const deleteUser = async (id) => {
     try {
@@ -193,4 +177,4 @@ const deleteUser = async (id) => {
         alert('An error occurred while removing the user.');
     }
     listUsers();
-}
+};

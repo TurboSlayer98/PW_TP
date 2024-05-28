@@ -43,6 +43,22 @@ exports.getById = async (req, res) => {
     }
 }
 
+//Devolve utilizadores tipo de role
+exports.getByRole = async (req, res) => {
+    const { Role } = req.body;
+    try {
+        const response = await prisma.users.findUnique({
+            where: {
+                role: Role,
+            },
+        })
+        //devolve o carro
+        res.status(200).json(response)
+    } catch (error) {
+        res.status(404).json({ msg: error.message })
+    }
+}
+
 //criar um carro
 exports.create = async (req, res) => {
     //apanhar os dados enviados
