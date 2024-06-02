@@ -1,5 +1,6 @@
 const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient();
+const bcrypt = require('bcryptjs/dist/bcrypt');
 
 //Testa a ligação
 exports.testConnection = async (req, res) => {
@@ -13,11 +14,9 @@ exports.testConnection = async (req, res) => {
       }
 }
 
-//Devolve todos os carros
 exports.getAll = async (req, res) => {
     try {
-        //le toda a tabela
-        const response = await prisma.cars.findMany();
+        const response = await prisma.users.findMany();
         res.status(200).json(response);
     } catch (error) {
         res.status(500).json({ msg: error.message });
@@ -30,9 +29,25 @@ exports.getById = async (req, res) => {
     const id = req.params.id*1;
     try {
         //procura o carro com o id
-        const response = await prisma.cars.findUnique({
+        const response = await prisma.users.findUnique({
             where: {
                 id: id,
+            },
+        })
+        //devolve o carro
+        res.status(200).json(response)
+    } catch (error) {
+        res.status(404).json({ msg: error.message })
+    }
+}
+
+//Devolve utilizadores tipo de role
+exports.getByRole = async (req, res) => {
+    const { Role } = req.body;
+    try {
+        const response = await prisma.users.findUnique({
+            where: {
+                role: Role,
             },
         })
         //devolve o carro
@@ -45,25 +60,22 @@ exports.getById = async (req, res) => {
 //criar um carro
 exports.create = async (req, res) => {
     //apanhar os dados enviados
-    const { Brand, Model, Year, Plate, Color, Door_Number, Kilometers, Picture, UserID, ServiceID } = req.body;
+    const { Username, Email, Password, Firstname, Lastname, Gender, Role } = req.body;
     try {
         //criar um novo carro
-        const car = await prisma.cars.create({
+        const user = await prisma.users.create({
             data: {
-                brand: Brand,
-                model: Model,
-                year: Year,
-                plate: Plate,
-                color: Color,
-                door_number: Door_Number,
-                kilometers: Kilometers,
-                picture: Picture,
-                user_id: UserID,
-                //service_id: ServiceID,
+                username: Username,
+                email: Email,
+                password: bcrypt.hashSync(Password, 8),
+                firstname: Firstname,
+                lastname: Lastname,
+                gender: Gender,
+                role: Role,
             },
         })
         //devolve o carro criado
-        res.status(201).json(car)
+        res.status(201).json(user)
     } catch (error) {
         res.status(400).json({ msg: error.message })
     }
@@ -71,29 +83,25 @@ exports.create = async (req, res) => {
 
 //Atualizar um carro
 exports.update = async (req, res) => {
-    const { Brand,Model,Year,Plate,Color,Door_Number,Kilometers,Picture, UserID, ServiceID } = req.body;
-
+    const { Username, Email, Password, Firstname, Lastname, Gender, Role } = req.body;
     try {
         //procurar o carro com id e atualizar os dados
-        const car = await prisma.cars.update({
+        const user = await prisma.users.update({
             where: {
-                plate: car.plate,
+                email: user.email,
             },
             data: {
-                brand: Brand,
-                model: Model,
-                year: Year,
-                plate: Plate,
-                color: Color,
-                door_number: Door_Number,
-                kilometers: Kilometers,
-                picture: Picture,
-                user_id: UserID,
-                //service_id: ServiceID,
+                username: Username,
+                email: Email,
+                password: bcrypt.hashSync(Password, 8),
+                firstname: Firstname,
+                lastname: Lastname,
+                gender: Gender,
+                role: Role,
             },
         })
         //devolve o carro atualizado
-        res.status(200).json(car)
+        res.status(200).json(user)
     } catch (error) {
         res.status(400).json({ msg: error.message })
     }
@@ -101,16 +109,13 @@ exports.update = async (req, res) => {
 
 //apagar o carro com id passado
 exports.delete = async (req, res) => {
-    //le o id do carro
     const id = req.params.id;
     try {
-        //delete student
-        await prisma.cars.delete({
+        await prisma.users.delete({
             where: {
                 id: id*1,
             },
         })
-        //just return ok
         res.status(200).send("ok")
     } catch (error) {
         res.status(400).json({ msg: error.message })

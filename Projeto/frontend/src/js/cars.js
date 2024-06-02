@@ -3,7 +3,7 @@ const token = localStorage.getItem("token");
 const listCars = async () => {
   let strHtml = ``;
   const response = await fetch('http://localhost:4242/api/pgs/cars/', {
-    method: 'GET', headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'application/json' }
+    method: 'GET', headers: { 'Authorization': 'Bearer ${token}', 'Content-Type': 'application/json' }
   });
   const lv = await response.json();
   for (const car of lv) {
@@ -20,13 +20,14 @@ const listCars = async () => {
       </div>
       `;
   }
-  document.getElementById("cardCarros").innerHTML = strHtml;
+  document.getElementById("gridCarros").innerHTML = strHtml;
 };
 listCars();
 
 const listCarDetails = async (id) => {
   const response = await fetch('http://localhost:4242/api/pgs/cars/' + id, {
-    method: 'GET', headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'application/json' }});
+    method: 'GET', headers: { 'Authorization': 'Bearer ${token}', 'Content-Type': 'application/json' }
+  });
   const car = await response.json();
 
   document.getElementById("Car_inputBrand").value = car.brand;
@@ -37,6 +38,8 @@ const listCarDetails = async (id) => {
   document.getElementById("Car_inputDoorNumber").value = car.door_number;
   document.getElementById("Car_inputKilometers").value = car.kilometers;
   document.getElementById("Car_inputPicture").value = car.picture;
+  document.getElementById("optionUser").value = car.user_id;
+  //document.getElementById("optionService").value = car.sercice_id;
 };
 
 const addCar = async () => {
@@ -49,12 +52,14 @@ const addCar = async () => {
     Door_Number: document.getElementById("newCar_inputDoorNumber").value,
     Kilometers: document.getElementById("newCar_inputKilometers").value,
     Picture: document.getElementById("newCar_inputPicture").value,
+    UserID: document.getElementById("optionUser").value,
+    ServiceID: document.getElementById("optionService").value,
   };
 
   try {
     const response = await fetch('http://localhost:4242/api/pgs/cars/create', {
       method: 'POST',
-      headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'application/json' },
+      headers: { 'Authorization': 'Bearer ${token}', 'Content-Type': 'application/json' },
       body: JSON.stringify(car),
     });
 
@@ -63,7 +68,7 @@ const addCar = async () => {
     }
 
     const data = await response.json();
-    alert(`The car with plate ${car.Plate} has been added successfully!`);
+    alert(`The car with plate ${data.Plate} has been added successfully!`);
     listCars();  // Assuming this function is defined elsewhere
 
   } catch (error) {
@@ -82,10 +87,12 @@ const updateCar = async () => {
     Door_Number: document.getElementById("Car_inputDoorNumber").value,
     Kilometers: document.getElementById("Car_inputKilometers").value,
     Picture: document.getElementById("newCar_inputPicture").value,
+    UserID: document.getElementById("optionUser").value,
+    ServiceID: document.getElementById("optionService").value,
   };
   fetch("http://localhost:4242/api/pgs/cars/update", {
     method: "PUT",
-    headers: { Authorization: `Bearer ${token}`, "Content-Type": "application/json" },
+    headers: { 'Authorization': 'Bearer ${token}', 'Content-Type': 'application/json' },
     body: JSON.stringify(car),
   })
     .then((response) => {
@@ -112,7 +119,7 @@ const updateCar = async () => {
 const deleteCar = async (id) => {
   fetch("http://localhost:4242/api/pgs/cars/delete/" + id, {
     method: "DELETE",
-    headers: { Authorization: `Bearer ${token}`, "Content-Type": "application/json" },
+    headers: { 'Authorization': 'Bearer ${token}', 'Content-Type': 'application/json' },
   })
     .then((response) => {
       // Verifica se a resposta foi bem sucedida

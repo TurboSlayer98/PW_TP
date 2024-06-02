@@ -24,9 +24,9 @@ model Cars {
   kilometers Int
   picture String
   user Users @relation(fields: [user_id], references: [id])
-  user_id Int @unique
+  user_id Int
   service Services[]
-  service_id Int @unique
+  //service_id Int
 }
 
 model Users {
@@ -38,6 +38,7 @@ model Users {
   lastname String
   gender Gender
   role Role @default(CLIENT)
+  inService Boolean?
   car Cars[]
   appointment Appointments[]
 }
@@ -55,16 +56,15 @@ enum Gender {
 
 model Services {
   id Int @id @default(autoincrement())
-  
-  service_name String
-  service_description String
-  service_price Decimal
-  service_duration String
-  service_status Status @default(Pending)
+  name String
+  description String
+  price Decimal
+  duration String
+  status Status @default(Pending)
   car Cars @relation(fields: [car_id], references: [id])
-  car_id Int @unique
+  car_id Int
   appointment Appointments[]
-  appointment_id Int @unique
+  //appointment_id Int
 }
 
 enum Status {
@@ -75,10 +75,12 @@ enum Status {
 
 model Appointments {
   id Int @id @default(autoincrement())
-  appointment_datetime DateTime
-  appointment_status Status @default(Pending)
+  title String
+  start DateTime
+  end DateTime
+  status Status @default(Pending)
   user Users @relation(fields: [user_id], references: [id])
-  user_id Int @unique
+  user_id Int
   service Services @relation(fields: [service_id], references: [id])
-  service_id Int @unique
+  service_id Int
 }
