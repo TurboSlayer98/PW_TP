@@ -106,7 +106,7 @@ const validateLogin = async () => {
         if (data.role === 'ADMIN') {
             window.location.href = '../private/admins/dashboard.html';
         } else if (data.role === 'MECHANIC') {
-            window.location.href = '../private/admins/dashboard.html';
+            window.location.href = '../private/mechanics/dashboard.html';
         } else {
             window.location.href = '../private/users/dashboard.html';
         }
@@ -147,3 +147,27 @@ function logout() {
     // Redirect to the login page
     window.location.href = '../../public/login.html';
 }
+
+const leTokenSFF = async () => {
+    var dados = {
+      token: localStorage.getItem("token"),
+    };
+    console.log(JSON.stringify(dados));
+    const response= await fetch("http://localhost:4242/api/pgs/auth/letoken", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(dados),
+    })
+    console.log(response);
+    dados= await  response.json()
+    console.log(dados);
+    if(!response.ok){
+      alert("Erro ao fazer login");
+    }
+    else{
+      alert("token lido com sucesso");
+      console.log(dados);
+    }
+};

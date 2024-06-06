@@ -230,68 +230,79 @@
                                 </div>
                                 <div class="modal-body">
                                     <form>
-                                        <div class="form-floating mb-3">
-                                            <input class="form-control" id="userDetails_userName" type="text" />
-                                            <label for="userDetails_userName">Username</label>
-                                        </div>
-                                        <div class="form-floating mb-3">
-                                            <input class="form-control" id="userDetails_firstName" type="text" />
-                                            <label for="userDetails_firstName">First Name</label>
-                                        </div>
-                                        <div class="form-floating mb-3">
-                                            <input class="form-control" id="userDetails_lastName" type="text" />
-                                            <label for="userDetails_lastName">Last Name</label>
-                                        </div>
-                                        <div class="form-floating mb-3">
-                                            <input class="form-control" id="userDetails_Email" type="email" />
-                                            <label for="userDetails_Email">Email</label>
-                                        </div>
-                                        <div class="row  mb-3">
-                                            <div class="col-md-6">
-                                                <div class="form-floating mb-3 mb-md-0">
-                                                    <input class="form-control" id="userDetails_Password"
-                                                        type="password" />
-                                                    <label for="userDetails_Password">Password</label>
-                                                </div>
+                                        <div class="row justify-content-between">
+                                            <div class="col-sm-6 flex-column d-flex mb-3">
+                                                <label for="userDetails_firstName" class="form-label">First Name</label>
+                                                <input class="form-control" id="userDetails_firstName" type="text"
+                                                    placeholder="" />
                                             </div>
-                                            <div class="col-md-6">
-                                                <div class="form-floating mb-3 mb-md-0">
-                                                    <input class="form-control" id="userDetails_PasswordConfirm"
-                                                        type="password" />
-                                                    <label for="userDetails_PasswordConfirm">Confirm Password</label>
-                                                </div>
+                                            <div class="col-sm-6 flex-column d-flex mb-3">
+                                                <label for="userDetails_lastName" class="form-label">Last name</label>
+                                                <input class="form-control" id="userDetails_lastName" type="text"
+                                                    placeholder="" />
                                             </div>
                                         </div>
-                                        <div class="row mb-3">
-                                            <h5>Gender:</h5>
-                                            <div class="form-check form-check-inline ms-3">
-                                                <input class="form-check-input" name="userDetails_radiobuttonG"
-                                                    id="userDetails_GenderM" type="radio" value="Male" />
-                                                <label class="form-check-label" for="userDetails_GenderM">Male</label>
+                                        <div class="row justify-content-between">
+                                            <div class="col-sm-6 flex-column d-flex mb-3">
+                                                <label for="userDetails_userName" class="form-label">Username</label>
+                                                <input class="form-control" id="userDetails_userName" type="text"
+                                                    placeholder="" />
                                             </div>
-                                            <div class="form-check form-check-inline ms-3">
-                                                <input class="form-check-input" name="userDetails_radiobuttonG"
-                                                    id="userDetails_GenderF" type="radio" value="Female" />
-                                                <label class="form-check-label" for="userDetails_GenderF">Female</label>
+                                            <div class="col-sm-6 flex-column d-flex mb-3">
+                                                <label for="userDetails_Email" class="form-label">Email</label>
+                                                <input class="form-control" id="userDetails_Email" type="email"
+                                                    placeholder="" />
+                                            </div>
+                                        </div>
+                                        <div class="row justify-content-between">
+                                            <div class="col-sm-6 flex-column d-flex mb-3">
+                                                <label for="userDetails_Password" class="form-label">Password</label>
+                                                <input class="form-control" id="userDetails_Password" type="password"
+                                                    placeholder="" />
+                                            </div>
+                                            <div class="col-sm-6 flex-column d-flex mb-3">
+                                                <label for="userDetails_PasswordConfirm" class="form-label">Confirm
+                                                    Password</label>
+                                                <input class="form-control" id="userDetails_PasswordConfirm"
+                                                    type="password" placeholder="" />
                                             </div>
                                         </div>
                                         <div class="row mb-3">
-                                            <h5>Role:</h5>
-                                            <div class="form-check form-check-inline ms-3">
-                                                <input class="form-check-input" name="userDetails_radiobuttonR"
-                                                    id="userDetails_RoleA" type="radio" value="ADMIN" />
-                                                <label class="form-check-label"
-                                                    for="userDetails_RoleA">Adminitrator</label>
+                                            <div class="col-sm-6 flex-column d-flex mb-3">
+                                                <h5>Gender:</h5>
+                                                <div class="form-check form-check-inline ms-3">
+                                                    <input class="form-check-input" name="userDetails_radiobuttonG"
+                                                        id="userDetails_GenderM" type="radio" value="Male" />
+                                                    <label class="form-check-label"
+                                                        for="userDetails_GenderM">Male</label>
+                                                </div>
+                                                <div class="form-check form-check-inline ms-3">
+                                                    <input class="form-check-input" name="userDetails_radiobuttonG"
+                                                        id="userDetails_GenderF" type="radio" value="Female" />
+                                                    <label class="form-check-label"
+                                                        for="userDetails_GenderF">Female</label>
+                                                </div>
                                             </div>
-                                            <div class="form-check form-check-inline ms-3">
-                                                <input class="form-check-input" name="userDetails_radiobuttonR"
-                                                    id="userDetails_RoleM" type="radio" value="MECHANIC" />
-                                                <label class="form-check-label" for="userDetails_RoleM">Mechanic</label>
-                                            </div>
-                                            <div class="form-check form-check-inline ms-3">
-                                                <input class="form-check-input" name="userDetails_radiobuttonR"
-                                                    id="userDetails_RoleC" type="radio" value="CLIENT" />
-                                                <label class="form-check-label" for="userDetails_RoleC">Client</label>
+                                            <div class="col-sm-6 flex-column d-flex mb-3">
+                                                <h5>Role:</h5>
+                                                <div class="form-check form-check-inline ms-3">
+                                                    <input class="form-check-input" name="userDetails_radiobuttonR"
+                                                        id="userDetails_RoleA" type="radio" value="ADMIN" />
+                                                    <label class="form-check-label"
+                                                        for="userDetails_RoleA">Adminitrator</label>
+                                                </div>
+                                                <div class="form-check form-check-inline ms-3">
+                                                    <input class="form-check-input" name="userDetails_radiobuttonR"
+                                                        id="userDetails_RoleM" type="radio" value="MECHANIC" />
+                                                    <label class="form-check-label"
+                                                        for="userDetails_RoleM">Mechanic</label>
+                                                </div>
+                                                <div class="form-check form-check-inline ms-3">
+                                                    <input class="form-check-input" name="userDetails_radiobuttonR"
+                                                        id="userDetails_RoleC" type="radio" value="CLIENT" />
+                                                    <label class="form-check-label"
+                                                        for="userDetails_RoleC">Client</label>
+                                                </div>
                                             </div>
                                         </div>
                                     </form>
@@ -330,7 +341,6 @@
         crossorigin="anonymous"></script>
     <script src="../../src/js/datatables-simple-demo.js"></script>
     <script src="../../src/js/clients.js"></script>
-    <script src="../../src/js/cars.js"></script>
 </body>
 
 </html>

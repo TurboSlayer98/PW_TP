@@ -17,7 +17,7 @@ exports.testConnection = async (req, res) => {
 exports.getAll = async (req, res) => {
     try {
         //le toda a tabela
-        const response = await prisma.services.findMany();
+        const response = await prisma.service.findMany();
         res.status(200).json(response);
     } catch (error) {
         res.status(500).json({ msg: error.message });
@@ -30,7 +30,7 @@ exports.getById = async (req, res) => {
     const id = req.params.id * 1;
     try {
         //procura o carro com o id
-        const service = await prisma.services.findUnique({
+        const service = await prisma.service.findUnique({
             where: {
                 id: id,
             },
@@ -44,16 +44,16 @@ exports.getById = async (req, res) => {
 
 //criar um carro
 exports.create = async (req, res) => {
-    const { Name, Description, Price, Duration, Status, CarID } = req.body;
+    const { Name, Description, Price, Duration, Status, Type } = req.body;
     try {
-        const service = await prisma.services.create({
+        const service = await prisma.service.create({
             data: {
                 name: Name,
                 description: Description,
                 price: Price,
                 duration: Duration,
                 status: Status,
-                car_id: CarID,
+                type: Type,
             },
         })
         res.status(201).json(service)
@@ -68,7 +68,7 @@ exports.update = async (req, res) => {
 
     try {
         //procurar o carro com id e atualizar os dados
-        const service = await prisma.services.update({
+        const service = await prisma.service.update({
             where: {
                 id: ID,
             },
@@ -95,7 +95,7 @@ exports.delete = async (req, res) => {
     const id = req.params.id;
     try {
         //delete student
-        await prisma.services.delete({
+        await prisma.service.delete({
             where: {
                 id: id * 1,
             },
@@ -104,5 +104,15 @@ exports.delete = async (req, res) => {
         res.status(200).send("ok")
     } catch (error) {
         res.status(400).json({ msg: error.message })
+    }
+}
+
+exports.getAllTypes = async (req, res) => {
+    try {
+        //le toda a tabela
+        const response = await prisma.service.
+        res.status(200).json(response);
+    } catch (error) {
+        res.status(500).json({ msg: error.message });
     }
 }

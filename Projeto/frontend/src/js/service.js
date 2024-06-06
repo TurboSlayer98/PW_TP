@@ -1,9 +1,25 @@
-const token = localStorage.getItem("token");
+window.addEventListener('DOMContentLoaded', event => {
+
+  // Toggle the side navigation
+  const sidebarToggle = document.body.querySelector('#sidebarToggle');
+  if (sidebarToggle) {
+    // Uncomment Below to persist sidebar toggle between refreshes
+    // if (localStorage.getItem('sb|sidebar-toggle') === 'true') {
+    //     document.body.classList.toggle('sb-sidenav-toggled');
+    // }
+    sidebarToggle.addEventListener('click', event => {
+      event.preventDefault();
+      document.body.classList.toggle('sb-sidenav-toggled');
+      localStorage.setItem('sb|sidebar-toggle', document.body.classList.contains('sb-sidenav-toggled'));
+    });
+  }
+  const token = localStorage.getItem("token");
+});
 
 const listServices = async () => {
   let strHtml = ``;
   const response = await fetch('http://localhost:4242/api/pgs/service/', {
-    method: 'GET', headers: { 'Authorization': 'Bearer ${token}', 'Content-Type': 'application/json' }
+    method: 'GET', headers: { 'Authorization': `Bearer ${token}`, 'Content-Type': 'application/json' }
   });
   const lv = await response.json();
   for (const service of lv) {
@@ -14,6 +30,7 @@ const listServices = async () => {
         <td>${service.price}</td>
         <td>${service.duration}</td>
         <td>${service.status}</td>
+        <td>${service.type}</td>
         <td class="d-flex justify-content-center">
         <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#serviceDetailsModal" onclick="listServiceDetails(${service.id})">Details</button>
         <button class="btn btn-danger" onclick="deleteService(${service.id})"><i class="fa fa-solid fa-trash"></i></button>
@@ -27,32 +44,32 @@ listServices();
 
 const listServiceDetails = async (id) => {
   const response = await fetch('http://localhost:4242/api/pgs/service/' + id, {
-    method: 'GET', headers: { 'Authorization': 'Bearer ${token}', 'Content-Type': 'application/json' }
+    method: 'GET', headers: { 'Authorization': `Bearer ${token}`, 'Content-Type': 'application/json' }
   });
   const service = await response.json();
-
+  sessionStorage.setItem('id', service.id);
   document.getElementById("inputName").value = service.name;
   document.getElementById("inputDescription").value = service.description;
   document.getElementById("inputPrice").value = service.price;
   document.getElementById("inputDuration").value = service.duration;
   document.getElementById("selectStatus").value = service.status;
-  document.getElementById("optionCar").value = service.car_id;
+  document.getElementById("selectType").value = service.type;
+  await listSelectCar(service.car_id);
 };
 
 const addService = async () => {
   var service = {
     Name: document.getElementById("inputName").value,
     Description: document.getElementById("inputDescription").value,
-    Price: document.getElementById("inputPrice").value,
+    Price: parseFloat(document.getElementById("inputPrice").value),
     Duration: document.getElementById("inputDuration").value,
     Status: document.getElementById("selectStatus").value,
-    CarID: document.getElementById("optionCar").value,
+    Type: document.getElementById("selectType").value,
   };
-
   try {
     const response = await fetch('http://localhost:4242/api/pgs/service/create', {
       method: 'POST',
-      headers: { 'Authorization': 'Bearer ${token}', 'Content-Type': 'application/json' },
+      headers: { 'Authorization': `Bearer ${token}`, 'Content-Type': 'application/json' },
       body: JSON.stringify(service),
     });
 
@@ -61,8 +78,8 @@ const addService = async () => {
     }
 
     const data = await response.json();
-    alert(`The service with name ${data.Name} has been added successfully!`);
-    listServices();  // Assuming this function is defined elsewhere
+    alert(`The service with name ${data.name} has been added successfully!`);
+    listServices();
 
   } catch (error) {
     console.error('An error occurred:', error);
@@ -72,9 +89,10 @@ const addService = async () => {
 
 const updateService = async () => {
   var service = {
+    id: parseInt(sessionStorage.getItem('id')),
     Name: document.getElementById("inputName").value,
     Description: document.getElementById("inputDescription").value,
-    Price: document.getElementById("inputPrice").value,
+    Price: parseFloat(document.getElementById("inputPrice").value),
     Duration: document.getElementById("inputDuration").value,
     Status: document.getElementById("selectStatus").value,
     CarID: document.getElementById("optionCar").value,
@@ -83,7 +101,7 @@ const updateService = async () => {
   try {
     const response = await fetch('http://localhost:4242/api/pgs/service/update', {
       method: 'PUT',
-      headers: { 'Authorization': 'Bearer ${token}', 'Content-Type': 'application/json' },
+      headers: { 'Authorization': `Bearer ${token}`, 'Content-Type': 'application/json' },
       body: JSON.stringify(service),
     });
 
@@ -92,7 +110,7 @@ const updateService = async () => {
     }
 
     const data = await response.json();
-    alert(`The service named ${data.Name} has been updated successfully!`);
+    alert(`The service named ${data.name} has been updated successfully!`);
     listServices();  // Assuming this function is defined elsewhere
 
   } catch (error) {
@@ -104,7 +122,7 @@ const updateService = async () => {
 const deleteService = async (id) => {
   fetch("http://localhost:4242/api/pgs/service/delete/" + id, {
     method: "DELETE",
-    headers: { 'Authorization': 'Bearer ${token}', 'Content-Type': 'application/json' },
+    headers: { 'Authorization': `Bearer ${token}`, 'Content-Type': 'application/json' },
   })
     .then((response) => {
       // Verifica se a resposta foi bem sucedida
@@ -123,4 +141,22 @@ const deleteService = async (id) => {
       console.error("An error occurred:", error);
     });
   listServices();
+};
+
+const listSelectCar = async (id) => {
+  let strHtml = ``;
+  const response = await fetch('http://localhost:4242/api/pgs/cars/' + id, {
+    method: 'GET', headers: { 'Authorization': `Bearer ${token}`, 'Content-Type': 'application/json' }
+  });
+  const data = await response.json();
+  strHtml += `<option id="optionService" value="${data.id}" selected>${data.brand} ${data.model} - ${data.plate}</option><hr class="dropdown-divider"/>`;
+
+  const response2 = await fetch('http://localhost:4242/api/pgs/cars/', {
+    method: 'GET', headers: { 'Authorization': `Bearer ${token}`, 'Content-Type': 'application/json' }
+  });
+  const lv = await response2.json();
+  for (const service of lv) {
+    strHtml += `<option id="optionService" value="${data.id}" selected>${data.brand} ${data.model} - ${data.plate}</option>`;
+  }
+  document.getElementById("serviceDetails_selectCars").innerHTML = strHtml;
 };

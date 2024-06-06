@@ -1,9 +1,26 @@
-const token = localStorage.getItem("token");
+window.addEventListener('DOMContentLoaded', event => {
+
+    // Toggle the side navigation
+    const sidebarToggle = document.body.querySelector('#sidebarToggle');
+    if (sidebarToggle) {
+        // Uncomment Below to persist sidebar toggle between refreshes
+        // if (localStorage.getItem('sb|sidebar-toggle') === 'true') {
+        //     document.body.classList.toggle('sb-sidenav-toggled');
+        // }
+        sidebarToggle.addEventListener('click', event => {
+            event.preventDefault();
+            document.body.classList.toggle('sb-sidenav-toggled');
+            localStorage.setItem('sb|sidebar-toggle', document.body.classList.contains('sb-sidenav-toggled'));
+        });
+    }
+    const token = localStorage.getItem("token");
+});
 
 const listA = async () => {
     let strHtml = ``;
     const response = await fetch('http://localhost:4242/api/pgs/admins/', {
-        method: 'GET', headers: { 'Authorization': 'Bearer ${token}', 'Content-Type': 'application/json' }});
+        method: 'GET', headers: { 'Authorization': `Bearer ${token}`, 'Content-Type': 'application/json' }
+    });
     const lv = await response.json();
     for (const user of lv) {
         if (user.role == "ADMIN") {
@@ -16,8 +33,8 @@ const listA = async () => {
             <td>${user.gender}</td>
             <td>${user.role}</td>
             <td class="d-flex justify-content-center">
-            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#userDetailsModal" onclick="listDataM(${user.id})">Details</button>
-            <button class="btn btn-danger" onclick="deleteM(${user.id})"><i class="fa fa-solid fa-trash"></i></button>
+            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#userDetailsModal" onclick="listDataA(${user.id})">Details</button>
+            <button class="btn btn-danger" onclick="deleteA(${user.id})"><i class="fa fa-solid fa-trash"></i></button>
             </td>
         </tr>
         `;
@@ -29,10 +46,10 @@ listA();
 
 const listDataA = async (id) => {
     const response = await fetch('http://localhost:4242/api/pgs/admins/' + id, {
-        method: 'GET', headers: { 'Authorization': 'Bearer ${token}', 'Content-Type': 'application/json' }
+        method: 'GET', headers: { 'Authorization': `Bearer ${token}`, 'Content-Type': 'application/json' }
     });
     const user = await response.json();
-
+    sessionStorage.setItem('id', user.id);
     document.getElementById("userDetails_userName").value = user.username;
     document.getElementById("userDetails_Email").value = user.email;
     document.getElementById("userDetails_Password").value = user.password;
@@ -88,7 +105,7 @@ const addA = async () => {
     try {
         const response = await fetch('http://localhost:4242/api/pgs/admins/create', {
             method: 'POST',
-            headers: { 'Authorization': 'Bearer ${token}', 'Content-Type': 'application/json' },
+            headers: { 'Authorization': `Bearer ${token}`, 'Content-Type': 'application/json' },
             body: JSON.stringify(user),
         });
 
@@ -97,7 +114,7 @@ const addA = async () => {
         }
 
         const data = await response.json();
-        alert(`The user named ${data.Firstname} has been added successfully!`);
+        alert(`The user named ${data.firstname} has been added successfully!`);
         listA();  // Assuming this function is defined elsewhere
 
     } catch (error) {
@@ -125,6 +142,7 @@ const updateA = async () => {
     };
 
     var user = {
+        id: parseInt(sessionStorage.getItem('id')),
         Username: document.getElementById("userDetails_userName").value,
         Email: document.getElementById("userDetails_Email").value,
         Password: document.getElementById("userDetails_Password").value,
@@ -133,11 +151,11 @@ const updateA = async () => {
         Gender: gender,
         Role: role,
     };
-
+    console.log("Payload to be sent:", user);
     try {
         const response = await fetch('http://localhost:4242/api/pgs/admins/update', {
             method: 'PUT',
-            headers: { 'Authorization': 'Bearer ${token}', 'Content-Type': 'application/json' },
+            headers: { 'Authorization': `Bearer ${token}`, 'Content-Type': 'application/json' },
             body: JSON.stringify(user),
         });
 
@@ -147,7 +165,7 @@ const updateA = async () => {
 
         const data = await response.json();
         alert(`The user named ${data.Firstname} has been updated successfully!`);
-        listA();  // Assuming this function is defined elsewhere
+        listA();
 
     } catch (error) {
         console.error('An error occurred:', error);
@@ -159,19 +177,18 @@ const deleteA = async (id) => {
     try {
         const response = await fetch('http://localhost:4242/api/pgs/admins/delete/' + id, {
             method: 'DELETE',
-            headers: { 'Authorization': 'Bearer ${token}', 'Content-Type': 'application/json' },
+            headers: { 'Authorization': `Bearer ${token}`, 'Content-Type': 'application/json' },
         });
 
         if (!response.ok) {
             throw new Error('Failed to remove user');
         }
         const data = await response.json();
-        alert(`The user has been removed successfully!`);
-        listA();  // Assuming this function is defined elsewhere
+        alert('The user has been removed successfully!');
+        listA();
 
     } catch (error) {
         console.error('An error occurred:', error);
         alert('An error occurred while removing the user.');
     }
-    listA();
 };

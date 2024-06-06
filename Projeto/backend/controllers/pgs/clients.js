@@ -18,7 +18,7 @@ exports.testConnection = async (req, res) => {
 exports.getAll = async (req, res) => {
     try {
         //le toda a tabela
-        const response = await prisma.users.findMany();
+        const response = await prisma.user.findMany();
         res.status(200).json(response);
     } catch (error) {
         res.status(500).json({ msg: error.message });
@@ -31,7 +31,7 @@ exports.getById = async (req, res) => {
     const id = req.params.id*1;
     try {
         //procura o carro com o id
-        const response = await prisma.users.findUnique({
+        const response = await prisma.user.findUnique({
             where: {
                 id: id,
             },
@@ -47,7 +47,7 @@ exports.getById = async (req, res) => {
 exports.getByRole = async (req, res) => {
     const { Role } = req.body;
     try {
-        const response = await prisma.users.findUnique({
+        const response = await prisma.user.findUnique({
             where: {
                 role: Role,
             },
@@ -64,8 +64,7 @@ exports.create = async (req, res) => {
     //apanhar os dados enviados
     const { Username, Email, Password, Firstname, Lastname, Gender, Role } = req.body;
     try {
-        //criar um novo carro
-        const user = await prisma.users.create({
+        const user = await prisma.user.create({
             data: {
                 username: Username,
                 email: Email,
@@ -76,7 +75,6 @@ exports.create = async (req, res) => {
                 role: Role,
             },
         })
-        //devolve o carro criado
         res.status(201).json(user)
     } catch (error) {
         res.status(400).json({ msg: error.message })
@@ -85,12 +83,12 @@ exports.create = async (req, res) => {
 
 //Atualizar um carro
 exports.update = async (req, res) => {
-    const { Username, Email, Password, Firstname, Lastname, Gender, Role } = req.body;
+    const { id, Username, Email, Password, Firstname, Lastname, Gender, Role } = req.body;
     try {
         //procurar o carro com id e atualizar os dados
-        const user = await prisma.users.update({
+        const user = await prisma.user.update({
             where: {
-                email: user.email,
+                id: id,
             },
             data: {
                 username: Username,
@@ -113,7 +111,7 @@ exports.update = async (req, res) => {
 exports.delete = async (req, res) => {
     const id = req.params.id;
     try {
-        await prisma.users.delete({
+        await prisma.user.delete({
             where: {
                 id: id*1,
             },

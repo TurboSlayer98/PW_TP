@@ -17,7 +17,7 @@ exports.testConnection = async (req, res) => {
 exports.getAll = async (req, res) => {
     try {
         //le toda a tabela
-        const response = await prisma.cars.findMany();
+        const response = await prisma.car.findMany();
         res.status(200).json(response);
     } catch (error) {
         res.status(500).json({ msg: error.message });
@@ -26,16 +26,13 @@ exports.getAll = async (req, res) => {
 
 //Devolve um carro indicado por um id
 exports.getById = async (req, res) => {
-    //apanha o id enviado
     const id = req.params.id*1;
     try {
-        //procura o carro com o id
-        const response = await prisma.cars.findUnique({
+        const response = await prisma.car.findUnique({
             where: {
                 id: id,
             },
         })
-        //devolve o carro
         res.status(200).json(response)
     } catch (error) {
         res.status(404).json({ msg: error.message })
@@ -47,8 +44,7 @@ exports.create = async (req, res) => {
     //apanhar os dados enviados
     const { Brand, Model, Year, Plate, Color, Door_Number, Kilometers, Picture, UserID, ServiceID } = req.body;
     try {
-        //criar um novo carro
-        const car = await prisma.cars.create({
+        const car = await prisma.car.create({
             data: {
                 brand: Brand,
                 model: Model,
@@ -58,26 +54,22 @@ exports.create = async (req, res) => {
                 door_number: Door_Number,
                 kilometers: Kilometers,
                 picture: Picture,
-                user_id: UserID,
-                //service_id: ServiceID,
+                user: { connect: { id: UserID } },
             },
         })
-        //devolve o carro criado
         res.status(201).json(car)
     } catch (error) {
         res.status(400).json({ msg: error.message })
     }
 }
 
-//Atualizar um carro
 exports.update = async (req, res) => {
-    const { Brand,Model,Year,Plate,Color,Door_Number,Kilometers,Picture, UserID, ServiceID } = req.body;
+    const { id, Brand, Model, Year, Plate, Color, Door_Number, Kilometers, Picture, UserID, ServiceID } = req.body;
 
     try {
-        //procurar o carro com id e atualizar os dados
-        const car = await prisma.cars.update({
+        const car = await prisma.car.update({
             where: {
-                plate: car.plate,
+                id: id,
             },
             data: {
                 brand: Brand,
@@ -88,11 +80,20 @@ exports.update = async (req, res) => {
                 door_number: Door_Number,
                 kilometers: Kilometers,
                 picture: Picture,
-                user_id: UserID,
-                //service_id: ServiceID,
+                user: { connect: { id: UserID } },
             },
         })
-        //devolve o carro atualizado
+
+        if (ServiceID) {
+            await prisma.carsService.deleteMany({ where: { carId: id } });
+            await prisma.carsService.create({
+                data: {
+                    carId: id,
+                    serviceId: ServiceID
+                }
+            });
+        }
+
         res.status(200).json(car)
     } catch (error) {
         res.status(400).json({ msg: error.message })
@@ -105,7 +106,7 @@ exports.delete = async (req, res) => {
     const id = req.params.id;
     try {
         //delete student
-        await prisma.cars.delete({
+        await prisma.car.delete({
             where: {
                 id: id*1,
             },

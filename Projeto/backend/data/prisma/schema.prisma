@@ -13,23 +13,7 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Cars {
-  id Int @id @default(autoincrement())
-  brand String
-  model String
-  year Int
-  plate String @unique 
-  color String
-  door_number Int
-  kilometers Int
-  picture String
-  user Users @relation(fields: [user_id], references: [id])
-  user_id Int
-  service Services[]
-  //service_id Int
-}
-
-model Users {
+model User {
   id Int @id @default(autoincrement())
   username String
   email String @unique
@@ -39,8 +23,33 @@ model Users {
   gender Gender
   role Role @default(CLIENT)
   inService Boolean?
-  car Cars[]
-  appointment Appointments[]
+  cars Car[] @relation("UserCars")
+  appointments Appointment[]
+}
+
+model Car {
+  id Int @id @default(autoincrement())
+  brand String
+  model String
+  year Int
+  plate String @unique 
+  color String
+  door_number Int
+  kilometers Int
+  picture String
+  user_id Int
+  user User @relation("UserCars", fields: [user_id], references: [id])
+  services CarsService[]
+  appointments Appointment[]
+}
+
+model CarsService {
+  carid Int
+  serviceid Int
+  car Car @relation(fields: [carid], references: [id])
+  service Service @relation(fields: [serviceid], references: [id])
+
+  @@id([carid, serviceid])
 }
 
 enum Role {
@@ -54,17 +63,16 @@ enum Gender {
   Female
 }
 
-model Services {
+model Service {
   id Int @id @default(autoincrement())
   name String
   description String
   price Decimal
   duration String
   status Status @default(Pending)
-  car Cars @relation(fields: [car_id], references: [id])
-  car_id Int
-  appointment Appointments[]
-  //appointment_id Int
+  type ServiceTypes
+  carServices CarsService[]
+  appointments Appointment[]
 }
 
 enum Status {
@@ -73,14 +81,22 @@ enum Status {
   Completed
 }
 
-model Appointments {
+enum ServiceTypes {
+  Mechanic
+  Painting
+  Cleaning
+}
+
+model Appointment {
   id Int @id @default(autoincrement())
   title String
   start DateTime
   end DateTime
   status Status @default(Pending)
-  user Users @relation(fields: [user_id], references: [id])
   user_id Int
-  service Services @relation(fields: [service_id], references: [id])
+  user User @relation(fields: [user_id], references: [id])
+  car_id Int
+  car Car @relation(fields: [car_id], references: [id])
   service_id Int
+  service Service @relation(fields: [service_id], references: [id])
 }

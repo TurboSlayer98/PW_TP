@@ -131,7 +131,7 @@
                                             <div class="col-sm-6 flex-column d-flex mb-3">
                                                 <label for="newCar_inputYear" class="form-label">Year<span
                                                         class="text-danger"> *</span></label>
-                                                <input class="form-control" id="newCar_inputYear" type="number"
+                                                <input class="form-control" id="newCar_inputYear" type="text"
                                                     placeholder="" />
                                             </div>
                                             <div class="col-sm-6 flex-column d-flex mb-3">
@@ -151,7 +151,7 @@
                                             <div class="col-sm-6 flex-column d-flex mb-3">
                                                 <label for="newCar_inputDoorNumber" class="form-label">Door
                                                     Number<span class="text-danger"> *</span></label>
-                                                <input class="form-control" id="newCar_inputDoorNumber" type="number"
+                                                <input class="form-control" id="newCar_inputDoorNumber" type="text"
                                                     placeholder="" />
                                             </div>
                                         </div>
@@ -173,15 +173,8 @@
                                         </div>
                                         <div class="row justify-content-center">
                                             <div class="col-sm-12 flex-column d-flex mb-3">
-                                                <label for="inputStartDate" class="form-label">Client</label>
-                                                <select class="form-select" id="selectUser">
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="row justify-content-center">
-                                            <div class="col-sm-12 flex-column d-flex mb-3">
-                                                <label for="inputStartDate" class="form-label">Service</label>
-                                                <select class="form-select" id="selectService">
+                                                <label for="selectUser" class="form-label">Client</label>
+                                                <select class="form-select" id="selectUser" data-select-clients="true">
                                                 </select>
                                             </div>
                                         </div>
@@ -205,79 +198,68 @@
                                 </div>
                                 <div class="modal-body">
                                     <form>
-                                        <div class="form-floating mb-3">
-                                            <p class="form-control" id="carDetails_Brand"></p>
-                                            <label for="carDetails_Brand">Brand</label>
+                                        <div class="row justify-content-between">
+                                            <div class="col-sm-6 flex-column d-flex mb-3">
+                                                <label for="carDetails_Brand" class="form-label">Brand</label>
+                                                <input class="form-control" id="carDetails_Brand" type="text"
+                                                    placeholder="" />
+                                            </div>
+                                            <div class="col-sm-6 flex-column d-flex mb-3">
+                                                <label for="carDetails_Model" class="form-label">Model</label>
+                                                <input class="form-control" id="carDetails_Model" type="text"
+                                                    placeholder="" />
+                                            </div>
                                         </div>
-                                        <div class="form-floating mb-3">
-                                            <p class="form-control" id="carDetails_Model"></p>
-                                            <label for="carDetails_Model">Model</label>
+                                        <div class="row justify-content-between">
+                                            <div class="col-sm-6 flex-column d-flex mb-3">
+                                                <label for="carDetails_Year" class="form-label">Year</label>
+                                                <input class="form-control" id="carDetails_Year" type="text"
+                                                    placeholder="" />
+                                            </div>
+                                            <div class="col-sm-6 flex-column d-flex mb-3">
+                                                <label for="carDetails_Plate" class="form-label">Plate</label>
+                                                <input class="form-control" id="carDetails_Plate" type="text"
+                                                    placeholder="" />
+                                            </div>
                                         </div>
-                                        <div class="form-floating mb-3">
-                                            <p class="form-control" id="carDetails_Year"></p>
-                                            <label for="carDetails_Year">Year</label>
+                                        <div class="row justify-content-between">
+                                            <div class="col-sm-6 flex-column d-flex mb-3">
+                                                <label for="carDetails_Color" class="form-label">Color</label>
+                                                <input class="form-control" id="carDetails_Color" type="text"
+                                                    placeholder="" />
+                                            </div>
+                                            <div class="col-sm-6 flex-column d-flex mb-3">
+                                                <label for="carDetails_DoorNumber" class="form-label">Door
+                                                    Number</label>
+                                                <input class="form-control" id="carDetails_DoorNumber" type="text"
+                                                    placeholder="" />
+                                            </div>
                                         </div>
-                                        <div class="form-floating mb-3">
-                                            <p class="form-control" id="carDetails_Plate"></p>
-                                            <label for="carDetails_Plate">Plate</label>
+                                        <div class="row justify-content-between">
+                                            <div class="col-sm-6 flex-column d-flex mb-3">
+                                                <label for="carDetails_Kilometers" class="form-label">Kilometers</label>
+                                                <input class="form-control" id="carDetails_Kilometers" type="text"
+                                                    placeholder="" />
+                                            </div>
+                                            <div class="col-sm-6 flex-column d-flex mb-3">
+                                                <label for="carDetails_Picture" class="form-label">Picture</label>
+                                                <input class="form-control" id="carDetails_Picture" type="text"
+                                                    placeholder="" />
+                                            </div>
                                         </div>
-                                        <div class="form-floating mb-3">
-                                            <p class="form-control" id="carDetails_Color"></p>
-                                            <label for="carDetails_Color">Color</label>
+                                        <div class="row justify-content-center">
+                                            <div class="col-sm-12 flex-column d-flex mb-3">
+                                                <label for="carDetails_selectUser" class="form-label">Client</label>
+                                                <select class="form-select" id="carDetails_selectUser">
+                                                </select>
+                                            </div>
                                         </div>
-                                        <div class="form-floating mb-3">
-                                            <p class="form-control" id="carDetails_DoorNumber"></p>
-                                            <label for="carDetails_DoorNumber">Door Number</label>
-                                        </div>
-                                        <div class="form-floating mb-3">
-                                            <p class="form-control" id="carDetails_Kilometers"></p>
-                                            <label for="carDetails_Kilometers">Kilometers</label>
-                                        </div>
-                                    </form>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="modal fade" id="CarModal" tabindex="-1">
-                        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title">Car Details</h5>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                        aria-label="Close"></button>
-                                </div>
-                                <div class="modal-body">
-                                    <form>
-                                        <div class="form-floating mb-3">
-                                            <input class="form-control" id="Car_inputBrand" type="text" />
-                                            <label for="Car_inputBrand">Brand</label>
-                                        </div>
-                                        <div class="form-floating mb-3">
-                                            <input class="form-control" id="Car_inputModel" type="text" />
-                                            <label for="Car_inputModel">Model</label>
-                                        </div>
-                                        <div class="form-floating mb-3">
-                                            <input class="form-control" id="Car_inputYear" type="number" />
-                                            <label for="Car_inputYear">Year</label>
-                                        </div>
-                                        <div class="form-floating mb-3">
-                                            <input class="form-control" id="Car_inputPlate" type="text" />
-                                            <label for="Car_inputPlate">Plate</label>
-                                        </div>
-                                        <div class="form-floating mb-3">
-                                            <input class="form-control" id="Car_inputColor" type="text" />
-                                            <label for="Car_inputColor">Color</label>
-                                        </div>
-                                        <div class="form-floating mb-3">
-                                            <input class="form-control" id="Car_inputDoorNumber" type="number" />
-                                            <label for="Car_inputDoorNumber">Door Number</label>
-                                        </div>
-                                        <div class="form-floating mb-3">
-                                            <input class="form-control" id="Car_inputKilometers" type="number" />
-                                            <label for="Car_inputKilometers">Kilometers</label>
+                                        <div class="row justify-content-center">
+                                            <div class="col-sm-12 flex-column d-flex mb-3">
+                                                <label for="carDetails_selectService" class="form-label">Service</label>
+                                                <select class="form-select" id="carDetails_selectService">
+                                                </select>
+                                            </div>
                                         </div>
                                     </form>
                                 </div>
@@ -309,9 +291,6 @@
         crossorigin="anonymous"></script>
     <script src="../../src/js/scripts.js"></script>
     <script src="../../src/js/auth.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
-    <script src="../../src/assets/demo/chart-area-demo.js"></script>
-    <script src="../../src/assets/demo/chart-bar-demo.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js"
         crossorigin="anonymous"></script>
     <script src="../../src/js/datatables-simple-demo.js"></script>
