@@ -85,12 +85,12 @@ exports.create = async (req, res) => {
 
 //Atualizar um carro
 exports.update = async (req, res) => {
-    const { Username, Email, Password, Firstname, Lastname, Gender, Role } = req.body;
+    const { id, Username, Email, Password, Firstname, Lastname, Gender, Role } = req.body;
     try {
         //procurar o carro com id e atualizar os dados
         const user = await prisma.user.update({
             where: {
-                email: user.email,
+                id: id,
             },
             data: {
                 username: Username,

@@ -54,7 +54,7 @@ const listServiceDetails = async (id) => {
   document.getElementById("inputDuration").value = service.duration;
   document.getElementById("selectStatus").value = service.status;
   document.getElementById("selectType").value = service.type;
-  await listSelectCar(service.car_id);
+  await listSelectCar(service.id);
 };
 
 const addService = async () => {
@@ -95,7 +95,7 @@ const updateService = async () => {
     Price: parseFloat(document.getElementById("inputPrice").value),
     Duration: document.getElementById("inputDuration").value,
     Status: document.getElementById("selectStatus").value,
-    CarID: document.getElementById("optionCar").value,
+    CarID: parseInt(document.getElementById("optionCar").value),
   };
 
   try {
@@ -145,18 +145,23 @@ const deleteService = async (id) => {
 
 const listSelectCar = async (id) => {
   let strHtml = ``;
-  const response = await fetch('http://localhost:4242/api/pgs/cars/' + id, {
+  const response = await fetch('http://localhost:4242/api/pgs/service/' + id, {
     method: 'GET', headers: { 'Authorization': `Bearer ${token}`, 'Content-Type': 'application/json' }
   });
-  const data = await response.json();
-  strHtml += `<option id="optionService" value="${data.id}" selected>${data.brand} ${data.model} - ${data.plate}</option><hr class="dropdown-divider"/>`;
+  const related = await response.json();
+  console.log(related);
+  for (const data of related) {
+    strHtml += `<option id="optionCar" value="${data.id}" selected>${data.brand} ${data.model} - ${data.plate}</option>`;
+  }
+
+  strHtml += `<hr class="dropdown-divider"/>`;
 
   const response2 = await fetch('http://localhost:4242/api/pgs/cars/', {
     method: 'GET', headers: { 'Authorization': `Bearer ${token}`, 'Content-Type': 'application/json' }
   });
   const lv = await response2.json();
-  for (const service of lv) {
-    strHtml += `<option id="optionService" value="${data.id}" selected>${data.brand} ${data.model} - ${data.plate}</option>`;
+  for (const car of lv) {
+    strHtml += `<option id="optionCar" value="${car.id}" selected>${car.brand} ${car.model} - ${car.plate}</option>`;
   }
   document.getElementById("serviceDetails_selectCars").innerHTML = strHtml;
 };

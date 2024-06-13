@@ -7,7 +7,7 @@ const prisma = new PrismaClient()
 exports.signin = async (req, res) => {
     try {
         const { email, password } = req.body;
-        const user = await prisma.users.findUnique({
+        const user = await prisma.user.findUnique({
             where: {email: email,},
         })
         if (user) {
@@ -27,7 +27,7 @@ exports.signin = async (req, res) => {
 exports.signup = async (req, res) => {
     try {
         const { firstname, lastname, email, password } = req.body;
-        await prisma.users.create({
+        await prisma.user.create({
             data: {
                 firsname: firstname,
                 lastname: lastname,

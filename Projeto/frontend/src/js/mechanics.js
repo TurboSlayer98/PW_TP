@@ -49,7 +49,7 @@ const listDataM = async (id) => {
         method: 'GET', headers: { 'Authorization': `Bearer ${token}`, 'Content-Type': 'application/json' }
     });
     const user = await response.json();
-
+    sessionStorage.setItem('id', user.id);
     document.getElementById("userDetails_userName").value = user.username;
     document.getElementById("userDetails_Email").value = user.email;
     document.getElementById("userDetails_Password").value = user.password;
@@ -142,6 +142,7 @@ const updateM = async () => {
     };
 
     var user = {
+        id: parseInt(sessionStorage.getItem('id')),
         Username: document.getElementById("userDetails_userName").value,
         Email: document.getElementById("userDetails_Email").value,
         Password: document.getElementById("userDetails_Password").value,
@@ -183,12 +184,11 @@ const deleteM = async (id) => {
             throw new Error('Failed to remove user');
         }
         const data = await response.json();
-        alert(`The user has been removed successfully!`);
-        listM();  // Assuming this function is defined elsewhere
+        alert(`The mechanic has been removed successfully!`);
+        listM();
 
     } catch (error) {
         console.error('An error occurred:', error);
-        alert('An error occurred while removing the user.');
+        alert('An error occurred while removing the mechanic.');
     }
-    listM();
 }

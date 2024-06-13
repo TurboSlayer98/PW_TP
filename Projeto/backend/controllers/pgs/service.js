@@ -62,15 +62,13 @@ exports.create = async (req, res) => {
     }
 }
 
-//Atualizar um carro
 exports.update = async (req, res) => {
-    const { ID, Name, Description, Price, Duration, Status } = req.body;
+    const { id, Name, Description, Price, Duration, Status, Type, CarID } = req.body;
 
     try {
-        //procurar o carro com id e atualizar os dados
         const service = await prisma.service.update({
             where: {
-                id: ID,
+                id: id,
             },
             data: {
                 name: Name,
@@ -78,11 +76,9 @@ exports.update = async (req, res) => {
                 price: Price,
                 duration: Duration,
                 status: Status,
-                // Adicionar Carro
-                // Adicionar Appointment
+                type: Type,
             },
-        })
-        //devolve o carro atualizado
+        });
         res.status(200).json(service)
     } catch (error) {
         res.status(400).json({ msg: error.message })
@@ -116,3 +112,17 @@ exports.getAllTypes = async (req, res) => {
         res.status(500).json({ msg: error.message });
     }
 }
+/*
+exports.getById = async (req, res) => {
+    const id = req.params.id*1;
+    try {
+        const service = await prisma.carsService.findUnique({
+            where: {
+                id: id,
+            },
+        })
+        res.status(200).json(service)
+    } catch (error) {
+        res.status(404).json({ msg: error.message })
+    }
+}*/
