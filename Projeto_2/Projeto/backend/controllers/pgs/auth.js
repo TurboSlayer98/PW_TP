@@ -2,7 +2,7 @@ const bcrypt = require('bcryptjs/dist/bcrypt');
 const authenticateUtil = require('../../utils/authenticate.js');
 
 const { PrismaClient, Role } = require('@prisma/client');
-const prisma = new PrismaClient()
+const prisma = new PrismaClient();
 
 exports.signin = async (req, res) => {
     try {
