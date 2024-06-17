@@ -3,12 +3,12 @@
   "version": "1.0.0",
   "description": "API Projeto 2",
   "main": "server.js",
-  "prisma": {
-    "schema": "backend/data/prisma/schema.prisma"
-  },
   "scripts": {
     "build": "prisma generate",
     "start": "nodemon server.js"
+  },
+  "prisma": {
+    "schema": "backend/data/prisma/schema.prisma"
   },
   "repository": {
     "type": "git",
