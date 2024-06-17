@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \\\"Error: no test specified\\\" && exit 1",
-    "build": "prisma generate && next build",
+    "build": "backend/data/prisma/prisma generate",
     "start": "nodemon server.js"
   },
   "prisma": {
