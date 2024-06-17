@@ -29,11 +29,6 @@ app.use('/public/', publicrouter);
 //PostgresSQL
 app.use('/api/pgs/', pgs);
 
-// Handle all other routes and serve the index.html file
-app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'index.html'));
-});
-
 const port = process.env.SERVER_PORT || 8080;
 app.listen(port, () => {
     console.log('Express server listening on port', port)

@@ -4,8 +4,8 @@
   "description": "API Projeto 2",
   "main": "server.js",
   "scripts": {
-    "build": "prisma generate",
-    "start": "nodemon server.js"
+    "start": "nodemon server.js",
+    "build": "prisma generate"
   },
   "prisma": {
     "schema": "backend/data/prisma/schema.prisma"
