@@ -4,13 +4,18 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const express = require('express');
 
-//const privaterouter = require('./routes/index');
+// Serve static files from the 'frontend/public' directory
+app.use(express.static(path.join(__dirname, 'frontend', 'public')));
 
+// For any other route, serve the index.html
+app.get('/', (req, res) => {
+    res.sendFile(path.resolve(__dirname, 'frontend', 'public', 'index.html'));
+});
+
+//const privaterouter = require('./routes/index');
 const privaterouter = require('./backend/routes/pgs/private.js');
 const publicrouter = require('./backend/routes/local/public.js');
-
 //const router = require('./routes/local/index.js');
-
 const pgs = require('./backend/routes/pgs/index.js');
 
 const app = express();
@@ -28,14 +33,6 @@ app.use('/public/', publicrouter);
 
 //PostgresSQL
 app.use('/api/pgs/', pgs);
-
-// Serve static files from the 'frontend/public' directory
-app.use(express.static(path.join(__dirname, 'frontend', 'public')));
-
-// For any other route, serve the index.html
-app.get('/', (req, res) => {
-    res.sendFile(path.resolve(__dirname, 'frontend', 'public', 'index.html'));
-});
 
 const port = process.env.SERVER_PORT || 8080;
 app.listen(port, () => {
