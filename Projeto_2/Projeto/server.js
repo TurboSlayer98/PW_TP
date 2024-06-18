@@ -29,10 +29,13 @@ app.use('/public/', publicrouter);
 //PostgresSQL
 app.use('/api/pgs/', pgs);
 
+// Serve static files from the 'frontend/public' directory
+app.use(express.static(path.join(__dirname, 'frontend', 'public')));
+
 // For any other route, serve the index.html
 app.get('/', (req, res) => {
-    res.sendFile(path.resolve(__dirname, 'frontend/public', 'index.html'));
-  });
+    res.sendFile(path.resolve(__dirname, 'frontend', 'public', 'index.html'));
+});
 
 const port = process.env.SERVER_PORT || 8080;
 app.listen(port, () => {
