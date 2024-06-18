@@ -4,6 +4,10 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const express = require('express');
 
+const app = express();
+app.use(bodyParser.json());
+app.use(cors());
+
 // Serve static files from the 'frontend/public' directory
 app.use(express.static(path.join(__dirname, 'frontend', 'public')));
 
@@ -17,10 +21,6 @@ const privaterouter = require('./backend/routes/pgs/private.js');
 const publicrouter = require('./backend/routes/local/public.js');
 //const router = require('./routes/local/index.js');
 const pgs = require('./backend/routes/pgs/index.js');
-
-const app = express();
-app.use(bodyParser.json());
-app.use(cors());
 
 // Rota privada
 app.use('/private/', privaterouter);
